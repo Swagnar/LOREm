@@ -1,5 +1,6 @@
 <p><img src="media/czwarta.png"></img></p>
 
+# Czwarta z Siedmiu
 Ostatnio widziana: <a data-path="Rejony/Przeklęte Ziemie.md">Jądro Ciemności</a>
 
 ---
