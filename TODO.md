@@ -1,2 +1,0 @@
-- kliknięcie w powiązane zadania w elfim lesie wypierdala białą ścianę
-- to czym jest gniew innosa to po prostu wiecie ze brandon chodzi bez broni i jest pacyfista, legend lore dostarczylo informacji ze gniew innosa (tak sie nazywa boski artefakt) brandon ma w sercu, czym jest wiec gniew innosa
