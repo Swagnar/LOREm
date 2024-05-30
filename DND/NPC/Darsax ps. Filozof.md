@@ -1,4 +1,13 @@
 
+
+# Darsax
+*ps. Filozof*
+
+Ostatnio widziano: karczma niedaleko miasta <a data-path="Lokacje/Montera.md">Montera</a>
+
+---
+
+
 Staruszek napotkany w karczmie, wziął mnie na partyjkę w karty.
 
 Zaczął rozmawiać ze mną o istocie mocy, skąd pochodzi i jak jest rozdawana wśród ludzi

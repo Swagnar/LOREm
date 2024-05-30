@@ -78,6 +78,8 @@ nav {
   overflow-y: scroll;
   transition: height 1s ease-in;
   max-height: 250px;
+
+  font-weight: 500;
 }
 
 .dropdown-content span {
@@ -110,7 +112,7 @@ nav {
 
   font-family: "Cinzel", serif;
   font-optical-sizing: auto;
-  font-weight: 400;
+  font-weight: 500;
   font-style: normal;
 
   /* min-height: 35px; */

@@ -2,7 +2,5 @@
 
 # Immeral
 
----
-
-> Eldritch Blast
+*Elf*, czarnoksiężnik z potężnym demonem który daje mu moc.
 

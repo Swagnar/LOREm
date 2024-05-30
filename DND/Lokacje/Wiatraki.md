@@ -1,9 +1,12 @@
-[[Myrtana]]
+# Wieś Wiatraki
+
+<a data-path="Rejony/Myrtana.md">Myrtana</a>
+
 
 - miejsce kultu Beszaby oraz jej kultystów
 - większość mieszkańców wybita
 
 Postacie:
 
-- ~~[[Sam]]~~
+- ~~<a data-path="NPC/Sam.md">Sam</a>~~
 - ~~Zielarka~~

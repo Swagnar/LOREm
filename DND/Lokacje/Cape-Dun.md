@@ -1,4 +1,6 @@
-[[Myrtana]]
+# Cape-Dun
+
+<a data-path="Rejony/Myrtana.md">Myrtana</a>
 
 >szemrane portowe miasto pełne przygód i szczyn. zapraszamy do *"Kuchni Snafa"* po najlepszy pasztet z goblina
 
@@ -10,5 +12,6 @@
 
 Postacie:
 
-- [[Tommy Shelly]]
-- [[Kurt]]
+- <a data-path="NPC/Tommy Shelly.md">Tommy Shelly</a>
+- <a data-path="NPC/Kurt.md">Kurt</a>
+

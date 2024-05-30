@@ -1,5 +1,9 @@
 <p><img src="media/brandon.png"></p>
 
+# Brandon
+Ostatnio widziano: ???
+
+---
 
 > Mały człowiek o wielkim sercu, pogromca czarnoksiężników, dowódca nie wszystkich palladynów, otwartym umyśle, niosący w swej piersi ogień i gniew, gniew, który spłynął już raz na jego przeciwników, tych, których mrok jest jedynym przyjacielem
 > ~ Efekt *Legend Lore*
