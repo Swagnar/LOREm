@@ -1,3 +1,3 @@
-<p><img src="media/aerion.png"></img></p>
+<p><img src="media/tavar.png"></img></p>
 
-# Aerion
+# Tavar
