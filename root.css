@@ -11,11 +11,12 @@ p {
 }
 main#root {
   width: 900px;
-  height: 100%;
-  margin: 5rem auto;
+  margin: 1rem auto;
+  position: relative;
 }
 main#root.fullwidth {
   width: 100%;
+  height: 100%;
   margin: 0;
 }
 nav {
@@ -24,23 +25,36 @@ nav {
   display: flex;
   justify-content: space-between;
   position: absolute;
-  top: -100px;
+  top: .5rem;
   left: 0;
   right: 0;
-  transition: top 1s ease-in-out;
-  border-radius: 1rem 1rem 0 0;
   margin: 0 auto;
   padding: 8px 0 6px 0;
 
   font-family: "Cinzel", serif;
   font-optical-sizing: auto;
-  font-weight: 700;
+  font-weight: 600;
   font-style: normal;
 }
-
-.navbar-visible {
-  top: .5rem;
+#left-arrow-control,
+#right-arrow-control {
+  background-color: #eee;
+  padding: .75rem .95rem;
+  position: absolute;
+  top: 101%;
 }
+#left-arrow-control:hover,
+#right-arrow-control:hover {
+  background-color: peru;
+  color: #eee;
+  cursor: pointer;
+}
+
+#left-arrow-control { left: 0; }
+#right-arrow-control { right: 0; }
+
+#left-arrow-control.hidden { display: none; }
+#right-arrow-control.hidden { display: none; }
 .dropbtn {
   background-color: #eee;
   color: #303030;
@@ -100,12 +114,16 @@ nav {
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
+
+  /* min-height: 35px; */
+  /* padding-top: 2rem; */
 }
 
 
 #content > p:has(img) {
   display: flex;
   justify-content: center;
+  padding-top: 3rem;
 }
 #content img {
   max-width: 300px;
