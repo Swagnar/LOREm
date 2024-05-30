@@ -1,3 +1,4 @@
 <p><img scr="media/meklaron.png"></p>
 
-- Łowca demonów
+# Meklaron Sennus
+<i>Łowca demonów</i>

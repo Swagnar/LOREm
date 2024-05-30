@@ -13,3 +13,16 @@ export function applyParallax(event, element) {
     bg.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
   });
 }
+
+export function flattenTree(tree) {
+  let flatList = [];
+
+  tree.forEach(folder => {
+      folder.files.forEach(file => {
+          flatList.push({ name: file.name, path: file.relativePath });
+      });
+  });
+
+  return flatList;
+}
+

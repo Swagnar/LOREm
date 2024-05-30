@@ -1,1 +1,3 @@
+# Rzeź we wsi Wiatraki
+
 > Mała chłopska społeczność okazała się tak naprawdę być kultystami Beszaby, porwali oni [[Meklaron Sennus|Meklarona]], [[Mi'oden|Mi'odena]], [[Aerion|Aeriona]], [[Lundquist Gjohl|Lundquista]] oraz [[Immeral|Immerala]]... i zapłacili za to życiem. Po uwolnieniu grupa bohaterów zostawiła wioskę opustoszałą i mokrą od krwi.
