@@ -17,24 +17,8 @@
 - ##### Faring
 	- Będzie wojna między Myrtaną a Elfim Lasem, za to co się tam stało, jak uwolnić brandona Asmal pomoże z zamachem??? - Vatras
 	- postać z 2 fioletowe półksiężyce - to widział meklaron
-### Gang Treli:
 
-- Krogar Cieniouchy
-- Sylwia Nocnastrzałka
-- Thorgar Krwawyłomot
-- Zara Cienioplan
-- Draven Czarnowłosy
-- Lirael Szkolnica
-- Azrik Szponogłos
-- Naela Mrocznyplamek - ciemnie plamki na ciele, krasnoludzica, broda  
+
 
 
 ## zbadać święte ziemie
-
-## wszczepiacze starmetalu
-
-
-## Zbadać przeszłość Brandona
-
-- [[Kurt]] twierdzi że Brandon jest uzurpatorem a nie wybrańcem Innosa
-- Zaklęcie *Legend Lore* wyjawiło pewne fakty o Brandonie
