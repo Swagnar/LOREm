@@ -46,7 +46,11 @@ export const DND_TREE = [
   {
       name: "Questy",
       files: [
-          { name: "Czarne Jabłko", relativePath: "Questy/Czarne Jabłko.md" }
+          { name: "Czarne Jabłko", relativePath: "Questy/Czarne Jabłko.md" },
+          { name: "Elfi las w niebezpieczeństwie (I)", relativePath: "Questy/Elfi las w niebezpieczeństwie (I).md" },
+          { name: "Elfi las w niebezpieczeństwie (II)", relativePath: "Questy/Elfi las w niebezpieczeństwie (II).md" },
+          { name: "Uwolnić Brandona", relativePath: "Questy/Uwolnić Brandona.md" },
+          { name: "Zbadać przeszłość Brandona", relativePath: "Questy/Zbadać przeszłość Brandona.md" },
       ]
   },
   {
