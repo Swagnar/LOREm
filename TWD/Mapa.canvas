@@ -1,0 +1,43 @@
+{
+	"nodes":[
+		{"id":"07199b11a58197f9","type":"group","x":3840,"y":-1554,"width":3680,"height":1882,"label":"Suches"},
+		{"id":"93acf1c521481cb6","type":"group","x":-420,"y":-380,"width":3380,"height":2020,"label":"Grupa"},
+		{"id":"d4c631f0e2ba8bd5","type":"group","x":-4000,"y":-1360,"width":3453,"height":1494,"color":"4","label":"Chattahoochee-Ononee National Forests"},
+		{"id":"1793344b48cbee3c","type":"group","x":3850,"y":739,"width":2210,"height":1701,"label":"Afton"},
+		{"id":"5e2a70e360636469","type":"group","x":3920,"y":-1440,"width":1800,"height":972,"color":"3","label":"Szkoła"},
+		{"id":"3ddbcdaa96dc1882","type":"group","x":520,"y":1780,"width":2286,"height":764,"color":"4","label":"Kościół"},
+		{"id":"59959d733ee3a7d5","type":"group","x":-240,"y":-1360,"width":1760,"height":760,"color":"1","label":"Wojsko"},
+		{"id":"3e9d35bd3f182dd5","type":"group","x":1520,"y":-280,"width":1200,"height":760,"color":"2","label":"Obcy"},
+		{"id":"bd405b1e0ba4bc03","type":"file","file":"RPG/TWD/Lokacje/Chattahoochee-Ononee National Forests/Bunkier Hanka.md","x":-1080,"y":-766,"width":419,"height":716,"color":"6"},
+		{"id":"5894152cfdd5eef1","type":"file","file":"RPG/TWD/Grupa/Hank.md","x":-320,"y":70,"width":245,"height":384,"color":"6"},
+		{"id":"689cf9398b3aae46","type":"file","file":"RPG/TWD/NPC/Mark.md","x":-3920,"y":-1280,"width":663,"height":794},
+		{"id":"dbc35d71d4f4a06c","type":"file","file":"RPG/TWD/NPC/Ojciec Johnego.md","x":-160,"y":-1280,"width":440,"height":560,"color":"1"},
+		{"id":"91a2176ba5e18acb","type":"file","file":"RPG/TWD/Grupa/Chuk.md","x":720,"y":-288,"width":400,"height":488,"color":"1"},
+		{"id":"fb1e39b22196eec2","type":"file","file":"RPG/TWD/Grupa/Andrew.md","x":160,"y":320,"width":400,"height":560},
+		{"id":"82e350daec0abf29","type":"file","file":"RPG/TWD/Grupa/Sarah.md","x":1600,"y":-204,"width":400,"height":604},
+		{"id":"2fd6560a25078da8","type":"file","file":"RPG/TWD/Grupa/Frank.md","x":2080,"y":-208,"width":560,"height":608},
+		{"id":"b014ac80c0b01f93","type":"file","file":"Mapa bunkra.png","x":-1362,"y":-2600,"width":884,"height":1178,"color":"6"},
+		{"id":"d33c57af8c28d759","type":"file","file":"RPG/TWD/NPC/Tim.md","x":360,"y":-1280,"width":440,"height":560,"color":"1"},
+		{"id":"d4bf066ed152be22","type":"file","file":"RPG/TWD/NPC/Simon.md","x":600,"y":1840,"width":400,"height":600,"color":"4"},
+		{"id":"57f698c2adef78af","type":"file","file":"RPG/TWD/Grupa/Graham.md","x":160,"y":960,"width":400,"height":560,"color":"4"},
+		{"id":"780ea769e7b3b8e4","type":"file","file":"RPG/TWD/Grupa/Beth.md","x":800,"y":960,"width":400,"height":560,"color":"4"},
+		{"id":"5d412531fd31e177","type":"file","file":"RPG/TWD/Grupa/Johny.md","x":160,"y":-288,"width":400,"height":488,"color":"1"},
+		{"id":"576fd47316070030","type":"file","file":"Zrzut ekranu 2024-05-25 165307.png","x":-57,"y":-2600,"width":1274,"height":859},
+		{"id":"7f6608d0876881d7","type":"file","file":"RPG/TWD/Lokacje/Suches/Stacja Benzynowa przy Suches.md","x":5840,"y":-1440,"width":400,"height":400},
+		{"id":"5bbd3a44f220f82e","type":"file","file":"RPG/TWD/NPC/Karen.md","x":3960,"y":-1400,"width":400,"height":560}
+	],
+	"edges":[
+		{"id":"2292a7807e98cb0a","fromNode":"5894152cfdd5eef1","fromSide":"left","toNode":"bd405b1e0ba4bc03","toSide":"right","color":"6"},
+		{"id":"ece65fd668e804cd","fromNode":"bd405b1e0ba4bc03","fromSide":"top","toNode":"b014ac80c0b01f93","toSide":"bottom","color":"6"},
+		{"id":"6a0a7a818a0a8c45","fromNode":"91a2176ba5e18acb","fromSide":"left","toNode":"5d412531fd31e177","toSide":"right","color":"5"},
+		{"id":"e979a3e4d0dd3459","fromNode":"5d412531fd31e177","fromSide":"right","toNode":"91a2176ba5e18acb","toSide":"left","color":"5"},
+		{"id":"0eeb2f0c97e832d6","fromNode":"5d412531fd31e177","fromSide":"left","toNode":"5894152cfdd5eef1","toSide":"right","color":"6"},
+		{"id":"92c66f46a525e12f","fromNode":"fb1e39b22196eec2","fromSide":"left","toNode":"5894152cfdd5eef1","toSide":"right","color":"6"},
+		{"id":"4dcfbc17dfed79a8","fromNode":"57f698c2adef78af","fromSide":"left","toNode":"5894152cfdd5eef1","toSide":"right","color":"6"},
+		{"id":"a733d19710305c8c","fromNode":"fb1e39b22196eec2","fromSide":"right","toNode":"5bbd3a44f220f82e","toSide":"left","color":"5"},
+		{"id":"0ce7c57623731afb","fromNode":"780ea769e7b3b8e4","fromSide":"left","toNode":"57f698c2adef78af","toSide":"right"},
+		{"id":"1715bf16f7d894eb","fromNode":"d4bf066ed152be22","fromSide":"top","toNode":"57f698c2adef78af","toSide":"bottom","color":"4"},
+		{"id":"136d7bc0a02ca10a","fromNode":"5d412531fd31e177","fromSide":"top","toNode":"dbc35d71d4f4a06c","toSide":"bottom"},
+		{"id":"ed98f873d222d751","fromNode":"5d412531fd31e177","fromSide":"top","toNode":"d33c57af8c28d759","toSide":"bottom"}
+	]
+}

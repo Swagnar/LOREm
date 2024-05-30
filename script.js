@@ -1,11 +1,19 @@
 import { applyParallax, flattenTree } from "./scripts/utils.js";
 import { DND_TREE } from "./scripts/DND.js";
+import { TWD_TREE } from "./scripts/TWD.js";
+
+const ROOT = document.getElementById('root');
 
 /**
  * @type {string}
  */
 var selectedView = "";
+
+/**
+ * @type 
+ */
 var selectedTree;
+
 var flatTree;
 
 
@@ -115,6 +123,12 @@ function createNavbar() {
       let navDropdownContentWrapper = document.createElement('div');
       navDropdownContentWrapper.classList.add('dropdown-content');
       dir.files.forEach(file => {
+
+        // TODO
+        //
+        // If there is a directory inside `dir`, display it as a opt group or smth like that
+        //
+        
         let navDropdownContentElement = document.createElement('span');
         navDropdownContentElement.innerText = file.name;
         navDropdownContentElement.dataset.path = file.relativePath;
@@ -241,8 +255,8 @@ function changeView() {
   }
 }
 
-function createBootScreen() {
-  document.getElementById('root').classList.add('fullwidth')
+function createBootScreen(rootElement) {
+  rootElement.classList.add('fullwidth')
 
   let bootScreenWrapper = document.createElement('div');
   
@@ -289,24 +303,26 @@ function createBootScreen() {
   logoDND.addEventListener('click', () => {
     selectedView = "DND";
     selectedTree = DND_TREE;
+    console.log(selectedTree)
     flatTree = flattenTree(DND_TREE);
     changeView();
   });
 
   logoTWD.addEventListener('click', () => {
     selectedView = "TWD";
-    // selectedTree = TWD_TREE;
-    // flatTree = flattenTree(TWD_TREE);
+    selectedTree = TWD_TREE;
+    flatTree = flattenTree(TWD_TREE);
     changeView();
   });
 
   bootScreenDNDWrapper.append(backgroundDND, logoDND);
   bootScreenTWDWrapper.append(backgroundTWD, logoTWD);
   bootScreenWrapper.append(bootScreenDNDWrapper, bootScreenTWDWrapper);
-  document.getElementById('root').append(bootScreenWrapper);
+  rootElement.append(bootScreenWrapper);
 }
 
 window.onload = () => {
-  createBootScreen();
+
+  createBootScreen(ROOT);
 };
 
