@@ -1,3 +1,5 @@
+<p><img src="media/capedun.jpg"></img></p>
+
 # Cape-Dun
 
 <a data-path="Rejony/Myrtana.md">Myrtana</a>

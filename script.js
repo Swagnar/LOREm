@@ -1,4 +1,5 @@
 import { applyParallax, flattenTree } from "./scripts/utils.js";
+import { moveBack, moveForward } from "./scripts/controls.js";
 import { DND_TREE } from "./scripts/DND.js";
 import { TWD_TREE } from "./scripts/TWD.js";
 
@@ -18,27 +19,10 @@ var flatTree;
 
 
 function clearRootElement() {
-  const root = document.getElementById('root');
-  root.innerHTML = '';
-  root.classList.remove('fullwidth') 
+  ROOT.innerHTML = '';
+  ROOT.classList.remove('fullwidth') 
 }
-function simulateClickEvent(documentName, path) {
-  
-  const file = flatTree.find(file => file.path.includes(documentName));
 
-  if (!file) {
-    console.error('Document not found:', documentName);
-    return;
-  }
-
-  const event = new CustomEvent('mock', {
-    detail: {
-      path: path,
-      documentName: documentName
-    }
-  });
-  renderMarkdown(event);
-}
 /**
  * 
  * @param {Event|CustomEvent} e - event when clicking on a documents name in the navbar, or `CustomEvent` from arrow controls
@@ -72,7 +56,7 @@ function renderMarkdown(e) {
       .then(response => response.text())
       .then(markdown => {
         
-        // Parse the fetched file contents as markdown
+        // Parse the fetched file contents as markdown and inject it inside `#content` element
         document.getElementById('content').innerHTML = marked.parse(markdown);
         
         // Change the pages title
@@ -145,31 +129,18 @@ function createNavbar() {
       navbar.append(navDropdownButtonWrapper);
       console.log("Navbar created")
     });
-    document.getElementById('root').append(navbar);
+    ROOT.append(navbar);
   } catch(e) {
     console.error(e);
   }
 }
 
-function moveBack() {
-  let leftArrow = document.getElementById('left-arrow-control');
-  const target = leftArrow.getAttribute('data-target');
-  if (target) {
-    const documentName = target.split('/').pop().replace('.md', ''); // Extract document name
-    simulateClickEvent(documentName, target);
-  }
-}
-
-function moveForward() {
-  let rightArrow = document.getElementById('right-arrow-control');
-  const target = rightArrow.getAttribute('data-target');
-  if (target) {
-    const documentName = target.split('/').pop().replace('.md', ''); // Extract document name
-    simulateClickEvent(documentName, target);
-  }
-}
-
+/**
+ * Creates relatively positioned arrow controls 
+ * @param {HTMLDivElement} rootElement 
+ */
 function createControls(rootElement) {
+
   let leftArrow = document.createElement('span')
   let rightArrow = document.createElement('span')
 
@@ -184,24 +155,32 @@ function createControls(rootElement) {
 
   [leftArrow,rightArrow].forEach(arrow => arrow.classList.add('hidden'))
 
-  leftArrow.addEventListener('click', moveBack)
-  rightArrow.addEventListener('click', moveForward)
+  try {
 
-  document.addEventListener('keydown', (ev) => {
-    let keyName = ev.key;
-    if(keyName === "ArrowLeft" || keyName === "a") {
-      moveBack(ev)
-    }
-  })
-  document.addEventListener('keydown', (ev) => {
-    let keyName = ev.key;
-    if(keyName === "ArrowRight" || keyName === "d") {
-      moveForward(ev)
-    } 
-  })
+    // Add 'click' event to arrow controls
+    leftArrow.addEventListener('click', function() { renderMarkdown(moveBack(leftArrow, flatTree)) })
+    rightArrow.addEventListener('click', function() { renderMarkdown(moveForward(rightArrow,flatTree)) })
+  
+    // Add 'keydown' event listener for the `document`, check if the keys are navigational and then behave like `click` event
+    document.addEventListener('keydown', (ev) => {
+      let keyName = ev.key;
+      if(keyName === "ArrowLeft" || keyName === "a") {
+        renderMarkdown(moveBack(leftArrow, flatTree))
+      }
+    })
+    document.addEventListener('keydown', (ev) => {
+      let keyName = ev.key;
+      if(keyName === "ArrowRight" || keyName === "d") {
+        renderMarkdown(moveForward(rightArrow, flatTree))
+      } 
+    })
 
-  rootElement.prepend(rightArrow)
-  rootElement.prepend(leftArrow)
+  } catch(er) {
+    console.error(er)
+  } finally {
+    rootElement.prepend(rightArrow)
+    rootElement.prepend(leftArrow)
+  }
 }
 
 function updateControlsIndexes(currentDocumentName) {
@@ -218,14 +197,14 @@ function updateControlsIndexes(currentDocumentName) {
 
   switch (currentIndex) {
     case 0:
-      leftArrow.setAttribute('data-target', flatTree[flatTree.length-1].path);
+      leftArrow.setAttribute('data-path', flatTree[flatTree.length-1].path);
       break;
     case flatTree.length-1:
-      rightArrow.setAttribute('data-target', flatTree[0].path);
+      rightArrow.setAttribute('data-path', flatTree[0].path);
       break;
     default:
-      leftArrow.setAttribute('data-target', flatTree[currentIndex-1].path);
-      rightArrow.setAttribute('data-target', flatTree[currentIndex+1].path);
+      leftArrow.setAttribute('data-path', flatTree[currentIndex-1].path);
+      rightArrow.setAttribute('data-path', flatTree[currentIndex+1].path);
   }
 }
 
@@ -244,11 +223,10 @@ function changeView() {
     
     const contentElement = document.createElement('div');
     contentElement.id = "content";
-    document.getElementById('root').append(contentElement); 
+    ROOT.append(contentElement); 
 
-    document.getElementById('root').style.height
 
-    createControls(document.getElementById('root'))
+    createControls(ROOT)
 
   } catch(er) {
     console.error(er)

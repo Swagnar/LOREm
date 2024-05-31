@@ -2,5 +2,7 @@
 
 # Meklaron Sennus
 
-<i>Łowca demonów</i>
+*???, Łowca demonów*
+
+---
 

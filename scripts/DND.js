@@ -18,6 +18,7 @@ export const DND_TREE = [
           { name: "Faring", relativePath: "Lokacje/Faring.md" },
           { name: "Ishtar", relativePath: "Lokacje/Ishtar.md" },
           { name: "Vengard", relativePath: "Lokacje/Vengard.md" },
+          { name: "Montera", relativePath: "Lokacje/Montera.md" },
           { name: "Wiatraki", relativePath: "Lokacje/Wiatraki.md" }
       ]
   },
@@ -34,6 +35,7 @@ export const DND_TREE = [
           { name: "Maryla Rodowicz", relativePath: "NPC/Maryla Rodowicz.md" },
           { name: "Sam", relativePath: "NPC/Sam.md" },
           { name: "Sumot", relativePath: "NPC/Sumot.md" },
+          { name: "Swain", relativePath: "NPC/Swain.md" },
           { name: "Tommy Shelly", relativePath: "NPC/Tommy Shelly.md" },
           { name: "Trela", relativePath: "NPC/Trela.md" },
           { name: "Ukar", relativePath: "NPC/Ukar.md" },
@@ -49,7 +51,9 @@ export const DND_TREE = [
           { name: "Czarne Jabłko", relativePath: "Questy/Czarne Jabłko.md" },
           { name: "Elfi las w niebezpieczeństwie (I)", relativePath: "Questy/Elfi las w niebezpieczeństwie (I).md" },
           { name: "Elfi las w niebezpieczeństwie (II)", relativePath: "Questy/Elfi las w niebezpieczeństwie (II).md" },
+          { name: "Mgła Montery", relativePath: "Questy/Mgła Montery.md" },
           { name: "Uwolnić Brandona", relativePath: "Questy/Uwolnić Brandona.md" },
+          { name: "Zbadać nieznane ziemie", relativePath: "Questy/Zbadać nieznane ziemie.md" },
           { name: "Zbadać przeszłość Brandona", relativePath: "Questy/Zbadać przeszłość Brandona.md" },
       ]
   },
@@ -65,7 +69,9 @@ export const DND_TREE = [
       name: "Wydarzenia",
       files: [
           { name: "Atak na Cape-Dun", relativePath: "Wydarzenia/Atak na Cape-Dun.md" },
-          { name: "Rzeź we wsi Wiatraki", relativePath: "Wydarzenia/Rzeź we wsi Wiatraki.md" }
+          { name: "Koncert w Faring", relativePath: "Wydarzenia/Koncert w Faring.md" },
+          { name: "Rzeź we wsi Wiatraki", relativePath: "Wydarzenia/Rzeź we wsi Wiatraki.md" },
+          { name: "Spotkanie z Aniołami Beliara", relativePath: "Wydarzenia/Spotkanie z Aniołami Beliara.md" },
       ]
   }
 ];

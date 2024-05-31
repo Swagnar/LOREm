@@ -1,3 +1,5 @@
+<p><img src="media/wiatraki.jpg"></img></p>
+
 # Wieś Wiatraki
 
 <a data-path="Rejony/Myrtana.md">Myrtana</a>
