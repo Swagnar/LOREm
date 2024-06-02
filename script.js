@@ -1,5 +1,5 @@
-import { applyParallax, flattenTree } from "./scripts/utils.js";
-import { moveBack, moveForward } from "./scripts/controls.js";
+import { createBootScreen, createNavbar, flattenTree } from "./scripts/utils.js";
+import { moveBack, moveForward, createArrowControls } from "./scripts/controls.js";
 import { DND_TREE } from "./scripts/DND.js";
 import { TWD_TREE } from "./scripts/TWD.js";
 
@@ -24,12 +24,18 @@ function clearRootElement() {
 }
 
 /**
+ * Renders the markdown content of a document based on an event.
  * 
- * @param {Event|CustomEvent} e - event when clicking on a documents name in the navbar, or `CustomEvent` from arrow controls
- * 
- * Function fetches the documents contents based on `innerHTML` of the navbar dropdown menu element that was clicked.
- * It also adds `EventListener` to all `<a>` tags inside markdown, that have `data-path` attribiute
+ * This function fetches the content of a markdown document based on the `innerHTML` of the navbar
+ * dropdown menu element that was clicked, or based on details from a `CustomEvent` triggered by 
+ * arrow controls. It parses the markdown content and injects it into the `#content` element.
+ * Additionally, it adds `click` event listeners to all `<a>` tags with a `data-path` attribute
+ * inside the rendered markdown.
  *
+ * @param {Event|CustomEvent} e - The event triggered by clicking on a document's name in the 
+ *                                navbar, or a `CustomEvent` from arrow controls.
+ * @throws {Error} Throws an error if the selected nav link does not contain a path dataset or 
+ *                if the document name is missing.
  */
 function renderMarkdown(e) {
   console.log("Rendering markdown with event: ", e.type)
@@ -79,110 +85,17 @@ function renderMarkdown(e) {
   }
 }
 
-function createNavbar() {
-  console.log("Creating navbar...")
-
-  const navbar = document.createElement('nav');
-  
-  try {
-    if(!selectedTree) throw new TypeError(`No tree structure selected, got ${typeof selectedTree} expected Object` );
-
-    selectedTree.forEach(dir => {
-
-      if(!dir.name) throw new TypeError(`No direcory name found, got ${typeof dir.name} expected string`);
-
-      let navDropdownButtonWrapper = document.createElement('div');
-      let navDropdownButtonNameElement = document.createElement('span');
-
-      navDropdownButtonNameElement.innerText = dir.name;
-
-      navDropdownButtonWrapper.classList.add('dropdown');
-      navDropdownButtonNameElement.classList.add('dropbtn');
-      
-      navDropdownButtonWrapper.append(navDropdownButtonNameElement);
-
-      if(!dir.files) {
-        throw new Error(`Directory ${dir.name} does not have any files`);
-      }
-      let navDropdownContentWrapper = document.createElement('div');
-      navDropdownContentWrapper.classList.add('dropdown-content');
-      dir.files.forEach(file => {
-
-        // TODO
-        //
-        // If there is a directory inside `dir`, display it as a opt group or smth like that
-        //
-        
-        let navDropdownContentElement = document.createElement('span');
-        navDropdownContentElement.innerText = file.name;
-        navDropdownContentElement.dataset.path = file.relativePath;
-        
-        // When the menu element is clicked, handle it by fetching and rendering its markdown contents
-        navDropdownContentElement.addEventListener('click', renderMarkdown);
-        
-        // Appending the file that is inside a given directory to its hoverable parent element
-        navDropdownContentWrapper.append(navDropdownContentElement);
-
-      });
-
-      navDropdownButtonWrapper.append(navDropdownContentWrapper);
-      navbar.append(navDropdownButtonWrapper);
-      console.log("Navbar created")
-    });
-    ROOT.append(navbar);
-  } catch(e) {
-    console.error(e);
-  }
-}
-
 /**
- * Creates relatively positioned arrow controls 
- * @param {HTMLDivElement} rootElement 
+ * Updates the data-path attributes of the navigation controls based on the current document name.
+ * 
+ * This function finds the current document's index in the flattened tree structure and updates
+ * the `data-path` attributes of the left and right arrow controls to point to the previous and 
+ * next documents, respectively. It handles edge cases where the current document is the first 
+ * or last in the list by wrapping around to the end or start of the list.
+ *
+ * @param {string} currentDocumentName - The name of the current document being viewed.
+ * @throws {Error} Throws an error if the `selectedTree` or `flatTree` is not set.
  */
-function createControls(rootElement) {
-
-  let leftArrow = document.createElement('span')
-  let rightArrow = document.createElement('span')
-
-  leftArrow.innerHTML = "&larr;"
-  rightArrow.innerHTML = "&rarr;"
-
-  leftArrow.id = "left-arrow-control";
-  rightArrow.id = "right-arrow-control";
-
-  leftArrow.title = "A lub ←";
-  rightArrow.title = "D lub →";
-
-  [leftArrow,rightArrow].forEach(arrow => arrow.classList.add('hidden'))
-
-  try {
-
-    // Add 'click' event to arrow controls
-    leftArrow.addEventListener('click', function() { renderMarkdown(moveBack(leftArrow, flatTree)) })
-    rightArrow.addEventListener('click', function() { renderMarkdown(moveForward(rightArrow,flatTree)) })
-  
-    // Add 'keydown' event listener for the `document`, check if the keys are navigational and then behave like `click` event
-    document.addEventListener('keydown', (ev) => {
-      let keyName = ev.key;
-      if(keyName === "ArrowLeft" || keyName === "a") {
-        renderMarkdown(moveBack(leftArrow, flatTree))
-      }
-    })
-    document.addEventListener('keydown', (ev) => {
-      let keyName = ev.key;
-      if(keyName === "ArrowRight" || keyName === "d") {
-        renderMarkdown(moveForward(rightArrow, flatTree))
-      } 
-    })
-
-  } catch(er) {
-    console.error(er)
-  } finally {
-    rootElement.prepend(rightArrow)
-    rootElement.prepend(leftArrow)
-  }
-}
-
 function updateControlsIndexes(currentDocumentName) {
   if(!selectedTree) throw new Error("No tree structure selected");
   if(!flatTree) throw new Error("No flatten verions of a tree structure");
@@ -209,73 +122,96 @@ function updateControlsIndexes(currentDocumentName) {
 }
 
 /**
- * During boot screen, handle clicking on either campaign
- * Clear the root tag, create <nav> navbar, <div id="content"> for markdown
- * Create left and right arrows controls
+ * Changes the view based on the selected view and tree, and updates the UI accordingly.
+ * 
+ * This function clears the root element and creates a new navbar based on the selected tree.
+ * It also creates and appends a content element and arrow controls to the root element, 
+ * adding event listeners to the controls for navigation.
+ *
+ * @throws {Error} Throws an error if the `selectedView` or `selectedTree` is not set.
  */
 function changeView() {
   try {
-    if(!selectedView) {
-      throw new Error("No selected view, `selectedView` value = " + `${selectedView}`);
-    }
+    if(!selectedView) throw new Error("No view selected, `selectedView` value = " + `${selectedView}`); 
+    if(!selectedTree) throw new Error("No tree selected, `selectedTree` value = " + `${selectedView}`); 
+
     clearRootElement();
-    createNavbar();
+    createNavbar(ROOT, renderMarkdown, selectedTree);
+
     
     const contentElement = document.createElement('div');
     contentElement.id = "content";
     ROOT.append(contentElement); 
 
-
-    createControls(ROOT)
+    const [leftArrow, rightArrow] = createArrowControls(ROOT);
+    addEventListenersToControls(leftArrow, rightArrow);
 
   } catch(er) {
-    console.error(er)
+    console.error("There has been an error while changing the view: ",er)
   }
 }
 
-function createBootScreen(rootElement) {
-  rootElement.classList.add('fullwidth')
+// #################################################################################################################################################
+/**
+ * Adds event listeners to the navigation controls and document for handling markdown rendering.
+ * 
+ * This function attaches 'click' event listeners to the left and right arrow controls to render
+ * the previous or next markdown content respectively. It also attaches 'keydown' event listeners
+ * to the document to handle navigation using arrow keys or 'a'/'d' keys for similar functionality.
+ *
+ * @param {HTMLElement} leftArrow - The HTML element representing the left arrow control.
+ * @param {HTMLElement} rightArrow - The HTML element representing the right arrow control.
+ */
+function addEventListenersToControls(leftArrow, rightArrow) {
+  try {
 
-  let bootScreenWrapper = document.createElement('div');
+    // Add 'click' event to arrow controls
+    leftArrow.addEventListener('click', function() { renderMarkdown(moveBack(leftArrow, flatTree)) })
+    rightArrow.addEventListener('click', function() { renderMarkdown(moveForward(rightArrow,flatTree)) })
   
-  let bootScreenDNDWrapper = document.createElement('div');
-  let bootScreenTWDWrapper = document.createElement('div');
+    // Add 'keydown' event listener for the `document`, check if the keys are navigational and then behave like `click` event
+    document.addEventListener('keydown', (ev) => {
+      let keyName = ev.key;
+      if(keyName === "ArrowLeft" || keyName === "a") {
+        renderMarkdown(moveBack(leftArrow, flatTree))
+      }
+    })
+    document.addEventListener('keydown', (ev) => {
+      let keyName = ev.key;
+      if(keyName === "ArrowRight" || keyName === "d") {
+        renderMarkdown(moveForward(rightArrow, flatTree))
+      } 
+    })
 
-  let backgroundDND = document.createElement('div');
-  let backgroundTWD = document.createElement('div');
-
-  let logoDND = document.createElement('img');
-  let logoTWD = document.createElement('img');
-
-  logoDND.src = 'media/dnd_logo.png';
-  logoTWD.src = 'media/twd_logo.png';
-
-
-  bootScreenWrapper.classList.add('boot-screen-wrapper');
-  bootScreenDNDWrapper.classList.add('boot-screen-part', 'left-side');
-  bootScreenTWDWrapper.classList.add('boot-screen-part', 'right-side');
-
-  backgroundDND.classList.add('boot-screen-dnd', 'boot-screen-background');
-  backgroundTWD.classList.add('boot-screen-twd', 'boot-screen-background');
-
-  logoDND.classList.add('boot-screen-logo');
-  logoTWD.classList.add('boot-screen-logo');
-
-  [bootScreenDNDWrapper, bootScreenTWDWrapper].forEach(wrapper => {
-    wrapper.addEventListener('mousemove', (e) => applyParallax(e, wrapper));
+  } catch(er) {
+    console.error(er)
+  } 
+}
+/**
+ * Adds event listeners to the boot screen elements for hover and click interactions.
+ * 
+ * This function attaches 'mouseenter' and 'mouseleave' event listeners to the DND and TWD wrappers
+ * to apply a gray-out effect to the opposite section when hovered. It also attaches 'click' event 
+ * listeners to the DND and TWD logos to set the selected view and tree, flatten the tree, and 
+ * change the view accordingly.
+ *
+ * @param {HTMLElement} wrapperDND - The HTML element representing the DND wrapper.
+ * @param {HTMLElement} wrapperTWD - The HTML element representing the TWD wrapper.
+ * @param {HTMLImageElement} logoDND - The HTML image element representing the DND logo.
+ * @param {HTMLImageElement} logoTWD - The HTML image element representing the TWD logo.
+ */
+function addEventListenersToBootScreen(wrapperDND, wrapperTWD, logoDND, logoTWD) {
+  wrapperDND.addEventListener('mouseenter', () => {
+    wrapperTWD.classList.add('gray-out');
   });
-
-  bootScreenDNDWrapper.addEventListener('mouseenter', () => {
-    bootScreenTWDWrapper.classList.add('gray-out');
+  wrapperTWD.addEventListener('mouseenter', () => {
+    wrapperDND.classList.add('gray-out');
   });
-  bootScreenTWDWrapper.addEventListener('mouseenter', () => {
-    bootScreenDNDWrapper.classList.add('gray-out');
+  wrapperDND.addEventListener('mouseleave', () => {
+    wrapperTWD.classList.remove('gray-out');
   });
-  bootScreenDNDWrapper.addEventListener('mouseleave', () => {
-    bootScreenTWDWrapper.classList.remove('gray-out');
-  });
-  bootScreenTWDWrapper.addEventListener('mouseleave', () => {
-    bootScreenDNDWrapper.classList.remove('gray-out');
+  wrapperTWD.addEventListener('mouseleave', () => {
+    wrapperDND.classList.remove('gray-out');
   });
 
   logoDND.addEventListener('click', () => {
@@ -292,15 +228,11 @@ function createBootScreen(rootElement) {
     flatTree = flattenTree(TWD_TREE);
     changeView();
   });
-
-  bootScreenDNDWrapper.append(backgroundDND, logoDND);
-  bootScreenTWDWrapper.append(backgroundTWD, logoTWD);
-  bootScreenWrapper.append(bootScreenDNDWrapper, bootScreenTWDWrapper);
-  rootElement.append(bootScreenWrapper);
 }
 
+// #################################################################################################################################################
+
 window.onload = () => {
-
-  createBootScreen(ROOT);
+  const [wrapperDND, wrapperTWD, logoDND, logoTWD] = createBootScreen(ROOT);
+  addEventListenersToBootScreen(wrapperDND, wrapperTWD, logoDND, logoTWD);
 };
-

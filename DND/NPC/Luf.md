@@ -1,7 +1,7 @@
 <p><img></img></p>
 
 # Luf
-Ostatnio widziano: ?
+**Ostatnio widziano:** ?
 *?*
 
 ---

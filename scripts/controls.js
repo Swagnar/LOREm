@@ -1,3 +1,29 @@
+/**
+ * Creates relatively positioned arrow controls 
+ * @param {HTMLDivElement} rootElement 
+ */
+export function createArrowControls(rootElement) {
+
+  let leftArrow = document.createElement('span')
+  let rightArrow = document.createElement('span')
+
+  leftArrow.innerHTML = "&larr;"
+  rightArrow.innerHTML = "&rarr;"
+
+  leftArrow.id = "left-arrow-control";
+  rightArrow.id = "right-arrow-control";
+
+  leftArrow.title = "A lub ←";
+  rightArrow.title = "D lub →";
+
+  [leftArrow,rightArrow].forEach(arrow => arrow.classList.add('hidden'))
+
+  rootElement.prepend(rightArrow)
+  rootElement.prepend(leftArrow)
+
+  return [leftArrow, rightArrow];
+}
+
 function simulateClickEvent(documentName, path, flattenTree) {
 
   const file = flattenTree.find(file => file.path.includes(documentName));

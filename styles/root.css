@@ -11,7 +11,7 @@ p {
 }
 main#root {
   width: 900px;
-  margin: 1rem auto;
+  margin: 4rem auto;
   position: relative;
 }
 main#root.fullwidth {
@@ -25,7 +25,7 @@ nav {
   display: flex;
   justify-content: space-between;
   position: absolute;
-  top: .5rem;
+  top: -3rem;
   left: 0;
   right: 0;
   margin: 0 auto;
@@ -41,7 +41,7 @@ nav {
   background-color: #eee;
   padding: .75rem .95rem;
   position: absolute;
-  top: 101%;
+  top: 108%;
 }
 #left-arrow-control:hover,
 #right-arrow-control:hover {
@@ -55,12 +55,12 @@ nav {
 
 #left-arrow-control.hidden { display: none; }
 #right-arrow-control.hidden { display: none; }
+
 .dropbtn {
   background-color: #eee;
   color: #303030;
   font-size: 16px;
   border: none;
-  /* padding: 16px 0; */
 }
 
 .dropdown {
@@ -84,9 +84,10 @@ nav {
 
 .dropdown-content span {
   color: black;
-  padding: .75rem 1rem;
+  padding: .75em 1em;
   text-decoration: none;
   display: block;
+  font-size: 85%;
 }
 
 .dropdown-content span:hover {background-color: #ddd;}
@@ -106,24 +107,20 @@ nav {
   background-color: #eee;
   padding: 0 16px;
 
-  /* font-family: "Amatic SC", sans-serif;
-  font-weight: 400;
-  font-style: normal; */
-
   font-family: "Cinzel", serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
 
-  /* min-height: 35px; */
-  padding-top: 2rem;
 }
 
+#content:not(:empty) {
+  padding-top: 2rem;
+}
 
 #content > p:has(img) {
   display: flex;
   justify-content: center;
-  padding-top: 3rem;
 }
 #content img {
   max-width: 300px;

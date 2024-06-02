@@ -1,7 +1,7 @@
 <p><img src="media/czwarta.png"></img></p>
 
 # Czwarta z Siedmiu
-Ostatnio widziana: <a data-path="Rejony/Przeklęte Ziemie.md">Jądro Ciemności</a>
+**Ostatnio widziana:** <a data-path="Rejony/Przeklęte Ziemie.md">Jądro Ciemności</a>
 
 ---
 
@@ -27,6 +27,3 @@ Czarny zamek, drzewa, z zamku wydobywa się fioletowy płomień przed którymi u
 
 
 Jedno błędne założenie???
-
-
-HALO KURWA

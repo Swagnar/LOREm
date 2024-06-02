@@ -2,7 +2,7 @@
 
 # Ingmar
 
-Ostatnio widziano: <a data-path="Lokacje/Vengard.md">Vengard</a>
+**Ostatnio widziano:** <a data-path="Lokacje/Vengard.md">Vengard</a>
 *Człowiek*
 
 ---

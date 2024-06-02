@@ -1,4 +1,4 @@
-<p><img scr="media/meklaron.png"></p>
+<p><img src="media/meklaron.png"></p>
 
 # Meklaron Sennus
 

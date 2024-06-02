@@ -1,7 +1,7 @@
 <p><img src="media/brandon.png"></p>
 
 # Brandon
-Ostatnio widziano: ???
+**Ostatnio widziano:** ???
 
 ---
 
