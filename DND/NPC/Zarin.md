@@ -1,7 +1,8 @@
 <p><img></img></p>
 
 # Zarin
-Ostatnio widziano: [[Faring]]
+Ostatnio widziano: <a data-path="Lokacje/Faring.md">Faring</a> <br>
+*Człowiek, **martwy** *
 
 ---
 

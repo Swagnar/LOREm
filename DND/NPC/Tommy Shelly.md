@@ -1,7 +1,7 @@
 <p><img></img></p>
 
 # Tommy Shelly
-**Ostatnio widziano:** <a data-path="Lokacje/Cape-Dun.md">Cape-Dun</a>
+**Ostatnio widziano:** <a data-path="Lokacje/Cape-Dun.md">Cape-Dun</a> <br>
 *Człowiek*
 
 ---

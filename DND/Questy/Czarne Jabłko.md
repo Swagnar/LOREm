@@ -21,6 +21,6 @@
 - Draven Czarnowłosy
 - Lirael Szkolnica
 - ~~Azrik Szponogłos~~
-- ~~Naela Mrocznyplamek~~ - ciemnie plamki na ciele, krasnoludzica, broda  
+- ~~Naela Mrocznyplamek~~
 
 > Jabłko przepadło, z tego co wiemy przechowują je elfy w wojej stolicy

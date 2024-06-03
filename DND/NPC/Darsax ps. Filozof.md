@@ -1,9 +1,8 @@
 <p><img src="media/darsax.png"></img></p>
 
-# Darsax
-*ps. Filozof*
-
+# Darsax (Filozof)
 **Ostatnio widziano:** karczma niedaleko miasta <a data-path="Lokacje/Montera.md">Montera</a>
+*Człowiek?*
 
 ---
 

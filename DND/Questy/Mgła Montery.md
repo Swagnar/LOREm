@@ -13,4 +13,12 @@
 ---
 
 - [x] Porozmawiać z uczonymi na temat mgły
-- Wejść do mgły
+- [x] Wejść we mgłę
+
+> Po wejściu we mgłę, dotarł do nas słodki i ostry zapach gnijącego mięsa. Po krótkim czasie zaatakowały nas <a data-path="Bestiariusz.md">Ghule</a>
+
+- [x] Pokonać Ghule
+
+> Po dalszej eksploracji zacz,ęliśmy słyszeć szepty, po których Meklaron oznajmił obecność energii silniejszej niż nam się wydawało. Chaotycznej, tej samej co podczas spotkania z Czwartą z Siedmiu
+
+- []

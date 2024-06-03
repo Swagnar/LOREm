@@ -33,6 +33,7 @@ export const DND_TREE = [
           { name: "Kurt", relativePath: "NPC/Kurt.md" },
           { name: "Luf", relativePath: "NPC/Luf.md" },
           { name: "Maryla Rodowicz", relativePath: "NPC/Maryla Rodowicz.md" },
+          { name: "Prof Bebolber", relativePath: "NPC/Prof Bebolber.md" },
           { name: "Sam", relativePath: "NPC/Sam.md" },
           { name: "Sumot", relativePath: "NPC/Sumot.md" },
           { name: "Swain", relativePath: "NPC/Swain.md" },
@@ -42,7 +43,8 @@ export const DND_TREE = [
           { name: "Upsir", relativePath: "NPC/Upsir.md" },
           { name: "Vatras", relativePath: "NPC/Vatras.md" },
           { name: "Vuuldaadamen Zorqull", relativePath: "NPC/Vuuldaadamen Zorqull.md" },
-          { name: "Zarin", relativePath: "NPC/Zarin.md" }
+          { name: "Wutras", relativePath: "NPC/Wutras.md" },
+          { name: "Zarin", relativePath: "NPC/Zarin.md" },
       ]
   },
   {
@@ -73,5 +75,11 @@ export const DND_TREE = [
           { name: "Rzeź we wsi Wiatraki", relativePath: "Wydarzenia/Rzeź we wsi Wiatraki.md" },
           { name: "Spotkanie z Aniołami Beliara", relativePath: "Wydarzenia/Spotkanie z Aniołami Beliara.md" },
       ]
+  },
+  {
+    name: "Ekstra",
+    files: [
+        { name: "Bestiariusz", relativePath: "Bestiariusz.md" },
+    ]
   }
 ];

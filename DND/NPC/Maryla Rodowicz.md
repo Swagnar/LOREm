@@ -1,7 +1,7 @@
 <p><img></img></p>
 
 # Maryla Rodowicz
-**Ostatnio widziano:** ???
+**Ostatnio widziano:** ??? <br>
 *Krasnoludzica, 350 lat*
 
 ---
