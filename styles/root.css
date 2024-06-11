@@ -56,7 +56,7 @@ search > button {
   background-color: #eee;
   padding: .75rem .95rem;
   position: absolute;
-  top: 108%;
+  top: 0%;
 }
 #left-arrow-control:hover,
 #right-arrow-control:hover {
@@ -65,8 +65,8 @@ search > button {
   cursor: pointer;
 }
 
-#left-arrow-control { left: 0; }
-#right-arrow-control { right: 0; }
+#left-arrow-control { left: -3.5rem; }
+#right-arrow-control { right: -3.5rem; }
 
 #left-arrow-control.hidden { display: none; }
 #right-arrow-control.hidden { display: none; }

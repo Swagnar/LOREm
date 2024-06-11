@@ -2,7 +2,7 @@
  * Creates relatively positioned arrow controls 
  * @param {HTMLDivElement} rootElement 
  */
-export function createArrowControls(rootElement) {
+export function createArrowControls(rootElement, renderFn, flatTree) {
 
   let leftArrow = document.createElement('span');
   let rightArrow = document.createElement('span');
@@ -20,7 +20,7 @@ export function createArrowControls(rootElement) {
 
   rootElement.prepend(rightArrow);
   rootElement.prepend(leftArrow);
-
+  addEventListenersToControls(leftArrow, rightArrow, renderFn, flatTree);
   return [leftArrow, rightArrow];
 }
 
@@ -55,7 +55,47 @@ export function createSearchMenu(rootElement, flatTree) {
 
   return [searchInput, searchButton];
 }
+/**
+ * Adds event listeners to the navigation controls and document for handling markdown rendering.
+ * 
+ * This function attaches 'click' event listeners to the left and right arrow controls to render
+ * the previous or next markdown content respectively. It also attaches 'keydown' event listeners
+ * to the document to handle navigation using arrow keys or 'a'/'d' keys for similar functionality.
+ *
+ * @param {HTMLElement} leftArrow - The HTML element representing the left arrow control.
+ * @param {HTMLElement} rightArrow - The HTML element representing the right arrow control.
+ */
+function addEventListenersToControls(leftArrow, rightArrow, renderFn, flatTree) {
 
+  function isInputFocues() {
+    const activeElement = document.activeElement;
+    return activeElement && (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA' );
+  }
+
+  try {
+
+    // Add 'click' event to arrow controls
+    leftArrow.addEventListener('click', function() { renderFn(moveBack(leftArrow, flatTree)); });
+    rightArrow.addEventListener('click', function() { renderFn(moveForward(rightArrow,flatTree)); });
+  
+    // Keydown listeners
+    // If there is any active input element, abort listening
+    document.addEventListener('keydown', (ev) => {
+      if (isInputFocues()) return;
+      if(ev.key === "ArrowLeft" || ev.key === "a") {
+        renderFn(moveBack(leftArrow, flatTree));
+      }
+    });
+    document.addEventListener('keydown', (ev) => {
+      if (isInputFocues()) return;
+      if(ev.key === "ArrowRight" || ev.key === "d") {
+        renderFn(moveForward(rightArrow, flatTree));
+      } 
+    });
+  } catch(er) {
+    console.error(er);
+  } 
+}
 export function addEventListenersToSearchMenu(inputElement, submitElement, flatTree, renderFn) {
   inputElement.addEventListener('keydown', (ev) => {
     if(ev.key === 'Enter') {

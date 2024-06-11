@@ -57,7 +57,7 @@ export function flattenTree(tree) {
  * @returns {[HTMLDivElement, HTMLDivElement, HTMLImageElement, HTMLImageElement]} - Returns an array 
  *                                       containing the DND wrapper, TWD wrapper, DND logo, and TWD logo.
  */
-export function createBootScreen(rootElement) {
+export function createBootScreen(rootElement, viewFn) {
   console.log('Creating Boot Screen...');
   rootElement.classList.add('fullwidth');
 
@@ -98,7 +98,45 @@ export function createBootScreen(rootElement) {
   rootElement.append(bootScreenWrapper);
 
   console.log("Boot Screen created");
-  return [bootScreenDNDWrapper, bootScreenTWDWrapper, logoDND, logoTWD];
+  addEventListenersToBootScreen(bootScreenDNDWrapper, bootScreenTWDWrapper, logoDND, logoTWD, viewFn);
+}
+/**
+ * Adds event listeners to the boot screen elements for hover and click interactions.
+ * 
+ * This function attaches 'mouseenter' and 'mouseleave' event listeners to the DND and TWD wrappers
+ * to apply a gray-out effect to the opposite section when hovered. It also attaches 'click' event 
+ * listeners to the DND and TWD logos to set the selected view and tree, flatten the tree, and 
+ * change the view accordingly.
+ *
+ * @param {HTMLElement} wrapperDND - The HTML element representing the DND wrapper.
+ * @param {HTMLElement} wrapperTWD - The HTML element representing the TWD wrapper.
+ * @param {HTMLImageElement} logoDND - The HTML image element representing the DND logo.
+ * @param {HTMLImageElement} logoTWD - The HTML image element representing the TWD logo.
+ */
+function addEventListenersToBootScreen(wrapperDND, wrapperTWD, logoDND, logoTWD, viewFn) {
+  console.log('Adding event listeners to Boot Screen...');
+  wrapperDND.addEventListener('mouseenter', () => {
+    wrapperTWD.classList.add('gray-out');
+  });
+  wrapperTWD.addEventListener('mouseenter', () => {
+    wrapperDND.classList.add('gray-out');
+  });
+  wrapperDND.addEventListener('mouseleave', () => {
+    wrapperTWD.classList.remove('gray-out');
+  });
+  wrapperTWD.addEventListener('mouseleave', () => {
+    wrapperDND.classList.remove('gray-out');
+  });
+
+  logoDND.addEventListener('click', function() {
+    viewFn('DND');
+  });
+  
+  logoTWD.addEventListener('click', function() {
+    viewFn('TWD');
+  })
+
+  console.log('Event listeners added to Boot Screen');
 }
 /**
  * Creates a navigation bar from a given source tree and appends it to the root element.
@@ -176,5 +214,3 @@ export function createNavbar(rootElement, clickHandeler, sourceTree) {
     console.error("There has been an error while creating the navbar: ", er);
   }
 }
-
-

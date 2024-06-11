@@ -1,5 +1,5 @@
 import { createBootScreen, createNavbar, flattenTree } from "./scripts/utils.js";
-import { moveBack, moveForward, createArrowControls, createSearchMenu, addEventListenersToSearchMenu } from "./scripts/controls.js";
+import { createArrowControls, createSearchMenu, addEventListenersToSearchMenu } from "./scripts/controls.js";
 import { DND_TREE } from "./scripts/DND.js";
 import { TWD_TREE } from "./scripts/TWD.js";
 
@@ -130,124 +130,48 @@ function updateControlsIndexes(currentDocumentName) {
  *
  * @throws {Error} Throws an error if the `selectedView` or `selectedTree` is not set.
  */
-function changeView() {
-  try {
-    if(!selectedView) throw new Error("No view selected, `selectedView` value = " + `${selectedView}`); 
-    if(!selectedTree) throw new Error("No tree selected, `selectedTree` value = " + `${selectedView}`); 
+function changeView(viewName) {
 
-    clearRootElement();
-    
-    createNavbar(ROOT, renderMarkdown, selectedTree);
+  selectedView = viewName;
 
-    
-    const contentElement = document.createElement('div');
-    contentElement.id = "content";
-    ROOT.append(contentElement); 
-
-    const [leftArrow, rightArrow] = createArrowControls(ROOT);
-    addEventListenersToControls(leftArrow, rightArrow);
-
-    const [searchInput, searchButton] = createSearchMenu(ROOT, flatTree);
-    addEventListenersToSearchMenu(searchInput, searchButton, flatTree, renderMarkdown);
-    
-
-  } catch(er) {
-    console.error("There has been an error while changing the view: ",er)
+  switch(viewName) {
+    case "DND":
+      selectedTree = DND_TREE;
+      break;
+    case "TWD":
+      selectedTree = TWD_TREE;
+      break;
+    default:
+      throw new Error("Unrecognized view, got: " + viewName);
   }
-}
+  if(!selectedTree) throw new TypeError("Selected tree is undefined, default case omitted");
 
-// #################################################################################################################################################
-/**
- * Adds event listeners to the navigation controls and document for handling markdown rendering.
- * 
- * This function attaches 'click' event listeners to the left and right arrow controls to render
- * the previous or next markdown content respectively. It also attaches 'keydown' event listeners
- * to the document to handle navigation using arrow keys or 'a'/'d' keys for similar functionality.
- *
- * @param {HTMLElement} leftArrow - The HTML element representing the left arrow control.
- * @param {HTMLElement} rightArrow - The HTML element representing the right arrow control.
- */
-function addEventListenersToControls(leftArrow, rightArrow) {
-
-  function isInputFocues() {
-    const activeElement = document.activeElement;
-    return activeElement && (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA' );
-  }
-
-  try {
-
-    // Add 'click' event to arrow controls
-    leftArrow.addEventListener('click', function() { renderMarkdown(moveBack(leftArrow, flatTree)); });
-    rightArrow.addEventListener('click', function() { renderMarkdown(moveForward(rightArrow,flatTree)); });
+  flatTree = flattenTree(selectedTree);
   
-    // Add 'keydown' event listener for the `document`, check if the keys are navigational and then behave like `click` event
-    document.addEventListener('keydown', (ev) => {
-      if (isInputFocues()) return;
-      let keyName = ev.key;
-      if(keyName === "ArrowLeft" || keyName === "a") {
-        renderMarkdown(moveBack(leftArrow, flatTree));
-      }
-    });
-    document.addEventListener('keydown', (ev) => {
-      if (isInputFocues()) return;
-      let keyName = ev.key;
-      if(keyName === "ArrowRight" || keyName === "d") {
-        renderMarkdown(moveForward(rightArrow, flatTree));
-      } 
-    });
+  if(!flatTree || flatTree.length == 0) {
+    throw new Error("Error after parsing selectedTree into flatTree, undefined or empty");
+  }
 
-  } catch(er) {
-    console.error(er);
-  } 
+  clearRootElement();
+  
+  createNavbar(ROOT, renderMarkdown, selectedTree);
+
+  
+  const contentElement = document.createElement('div');
+  contentElement.id = "content";
+  ROOT.append(contentElement); 
+
+  createArrowControls(ROOT, renderMarkdown, flatTree);
+
+  const [searchInput, searchButton] = createSearchMenu(ROOT, flatTree);
+  addEventListenersToSearchMenu(searchInput, searchButton, flatTree, renderMarkdown);
+    
+
 }
-/**
- * Adds event listeners to the boot screen elements for hover and click interactions.
- * 
- * This function attaches 'mouseenter' and 'mouseleave' event listeners to the DND and TWD wrappers
- * to apply a gray-out effect to the opposite section when hovered. It also attaches 'click' event 
- * listeners to the DND and TWD logos to set the selected view and tree, flatten the tree, and 
- * change the view accordingly.
- *
- * @param {HTMLElement} wrapperDND - The HTML element representing the DND wrapper.
- * @param {HTMLElement} wrapperTWD - The HTML element representing the TWD wrapper.
- * @param {HTMLImageElement} logoDND - The HTML image element representing the DND logo.
- * @param {HTMLImageElement} logoTWD - The HTML image element representing the TWD logo.
- */
-function addEventListenersToBootScreen(wrapperDND, wrapperTWD, logoDND, logoTWD) {
-  console.log('Adding event listeners to Boot Screen...');
-  wrapperDND.addEventListener('mouseenter', () => {
-    wrapperTWD.classList.add('gray-out');
-  });
-  wrapperTWD.addEventListener('mouseenter', () => {
-    wrapperDND.classList.add('gray-out');
-  });
-  wrapperDND.addEventListener('mouseleave', () => {
-    wrapperTWD.classList.remove('gray-out');
-  });
-  wrapperTWD.addEventListener('mouseleave', () => {
-    wrapperDND.classList.remove('gray-out');
-  });
 
-  logoDND.addEventListener('click', () => {
-    selectedView = "DND";
-    selectedTree = DND_TREE;
-    console.log(selectedTree)
-    flatTree = flattenTree(DND_TREE);
-    changeView();
-  });
-
-  logoTWD.addEventListener('click', () => {
-    selectedView = "TWD";
-    selectedTree = TWD_TREE;
-    flatTree = flattenTree(TWD_TREE);
-    changeView();
-  });
-  console.log('Event listeners added to Boot Screen');
-}
 
 // #################################################################################################################################################
 
 window.onload = () => {
-  const [wrapperDND, wrapperTWD, logoDND, logoTWD] = createBootScreen(ROOT);
-  addEventListenersToBootScreen(wrapperDND, wrapperTWD, logoDND, logoTWD);
+  createBootScreen(ROOT, changeView);
 };
