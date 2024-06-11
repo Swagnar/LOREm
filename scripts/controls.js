@@ -4,11 +4,11 @@
  */
 export function createArrowControls(rootElement) {
 
-  let leftArrow = document.createElement('span')
-  let rightArrow = document.createElement('span')
+  let leftArrow = document.createElement('span');
+  let rightArrow = document.createElement('span');
 
-  leftArrow.innerHTML = "&larr;"
-  rightArrow.innerHTML = "&rarr;"
+  leftArrow.innerHTML = "&larr;";
+  rightArrow.innerHTML = "&rarr;";
 
   leftArrow.id = "left-arrow-control";
   rightArrow.id = "right-arrow-control";
@@ -16,12 +16,60 @@ export function createArrowControls(rootElement) {
   leftArrow.title = "A lub ←";
   rightArrow.title = "D lub →";
 
-  [leftArrow,rightArrow].forEach(arrow => arrow.classList.add('hidden'))
+  [leftArrow,rightArrow].forEach(arrow => arrow.classList.add('hidden'));
 
-  rootElement.prepend(rightArrow)
-  rootElement.prepend(leftArrow)
+  rootElement.prepend(rightArrow);
+  rootElement.prepend(leftArrow);
 
   return [leftArrow, rightArrow];
+}
+
+export function createSearchMenu(rootElement, flatTree) {
+  if(!flatTree) {
+    throw new TypeError('Cannot create datalist element, flatTree is undefined');
+  }
+  let searchWrapper = document.createElement('search');
+
+  let searchInput = document.createElement('input');
+  let searchButton = document.createElement('button');
+  let searchDataList = document.createElement('datalist');
+
+  searchDataList.id = "search-datalist";
+  searchInput.setAttribute('list', 'search-datalist');
+  searchInput.placeholder = "Wpisz nazwę pliku...";
+  searchInput.id = "search-input";
+
+  searchButton.innerText = "Szukaj";
+
+  flatTree.forEach(element => {
+    let option = document.createElement('option');
+    option.value = element.name;
+    option.dataset.path = element.relativePath;
+
+    searchDataList.append(option);
+  });
+
+  searchWrapper.append(searchInput, searchButton, searchDataList);
+
+  rootElement.append(searchWrapper);
+
+  return [searchInput, searchButton];
+}
+
+export function addEventListenersToSearchMenu(inputElement, submitElement, flatTree, renderFn) {
+  inputElement.addEventListener('keydown', (ev) => {
+    if(ev.key === 'Enter') {
+      submitElement.click();
+    }
+  });
+  
+  submitElement.addEventListener('click', function() {
+    let file = flatTree.find(f => f.name.includes(inputElement.value));
+
+    let ev = simulateClickEvent(file.name, file.path, flatTree);
+    renderFn(ev);
+    console.log(file);
+  });
 }
 
 function simulateClickEvent(documentName, path, flattenTree) {
@@ -41,6 +89,7 @@ function simulateClickEvent(documentName, path, flattenTree) {
   });
   return event;
 }
+
 /**
  * 
  * @param {HTMLSpanElement} leftArrow 

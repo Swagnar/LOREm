@@ -58,7 +58,8 @@ export function flattenTree(tree) {
  *                                       containing the DND wrapper, TWD wrapper, DND logo, and TWD logo.
  */
 export function createBootScreen(rootElement) {
-  rootElement.classList.add('fullwidth')
+  console.log('Creating Boot Screen...');
+  rootElement.classList.add('fullwidth');
 
   let bootScreenWrapper = document.createElement('div');
   
@@ -96,6 +97,7 @@ export function createBootScreen(rootElement) {
   bootScreenWrapper.append(bootScreenDNDWrapper, bootScreenTWDWrapper);
   rootElement.append(bootScreenWrapper);
 
+  console.log("Boot Screen created");
   return [bootScreenDNDWrapper, bootScreenTWDWrapper, logoDND, logoTWD];
 }
 /**
@@ -167,7 +169,7 @@ export function createNavbar(rootElement, clickHandeler, sourceTree) {
 
       navDropdownButtonWrapper.append(navDropdownContentWrapper);
       navbar.append(navDropdownButtonWrapper);
-      console.log("Navbar created")
+      console.log("Navbar created");
     });
     rootElement.append(navbar);
   } catch(er) {
