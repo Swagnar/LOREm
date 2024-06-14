@@ -76,6 +76,7 @@ export function createBootScreen(rootElement, viewFn) {
   logoTWD.src = 'media/twd_logo.png';
 
 
+
   bootScreenWrapper.classList.add('boot-screen-wrapper');
   bootScreenDNDWrapper.classList.add('boot-screen-part', 'left-side');
   bootScreenTWDWrapper.classList.add('boot-screen-part', 'right-side');
@@ -83,14 +84,13 @@ export function createBootScreen(rootElement, viewFn) {
   backgroundDND.classList.add('boot-screen-dnd', 'boot-screen-background');
   backgroundTWD.classList.add('boot-screen-twd', 'boot-screen-background');
 
-  logoDND.classList.add('boot-screen-logo');
-  logoTWD.classList.add('boot-screen-logo');
+  logoDND.classList.add('boot-screen-logo', 'animate__animated', 'animate__fadeIn');
+  logoTWD.classList.add('boot-screen-logo', 'animate__animated', 'animate__fadeIn');
 
   [bootScreenDNDWrapper, bootScreenTWDWrapper].forEach(wrapper => {
     wrapper.addEventListener('mousemove', (e) => applyParallax(e, wrapper));
   });
 
-  
 
   bootScreenDNDWrapper.append(backgroundDND, logoDND);
   bootScreenTWDWrapper.append(backgroundTWD, logoTWD);
@@ -134,7 +134,7 @@ function addEventListenersToBootScreen(wrapperDND, wrapperTWD, logoDND, logoTWD,
   
   logoTWD.addEventListener('click', function() {
     viewFn('TWD');
-  })
+  });
 
   console.log('Event listeners added to Boot Screen');
 }
@@ -150,7 +150,7 @@ function addEventListenersToBootScreen(wrapperDND, wrapperTWD, logoDND, logoTWD,
  *                                       It should be a div element.
  * @param {function} clickHandler - A function to be called when a file in the navbar is clicked. 
  *                                  The function should handle the file click event.
- * @param {Object[]} sourceTree - An array of directory objects representing the structure of 
+ * @param {CTree} sourceTree - An array of directory objects representing the structure of 
  *                                the navbar. Each directory object should have a `name` 
  *                                (string) and a `files` (array) property. Each file object 
  *                                in the `files` array should have a `name` (string) and 
@@ -158,16 +158,16 @@ function addEventListenersToBootScreen(wrapperDND, wrapperTWD, logoDND, logoTWD,
  * @throws {TypeError} - Throws an error if the source tree or any of its directories or files 
  *                       do not have the expected structure.
  */
-export function createNavbar(rootElement, clickHandeler, sourceTree) {
+export async function createNavbar(rootElement, clickHandeler, sourceTree) {
   if(!sourceTree || sourceTree == []) throw new TypeError(`Source tree is undefined or empty`);
 
-  console.log("Creating navbar...")
+  console.log("Creating navbar...");
 
   const navbar = document.createElement('nav');
   
   try {
 
-    sourceTree.forEach(dir => {
+    sourceTree.directories.forEach(dir => {
 
       if(!dir.name) throw new TypeError(`No direcory name found, got ${typeof dir.name} expected string`);
       if(!dir.files) throw new TypeError(`Directory ${dir.name} does not have any files`);
@@ -210,6 +210,8 @@ export function createNavbar(rootElement, clickHandeler, sourceTree) {
       console.log("Navbar created");
     });
     rootElement.append(navbar);
+
+    navbar.classList.add('animate__animated', 'animate__fadeIn');
   } catch(er) {
     console.error("There has been an error while creating the navbar: ", er);
   }

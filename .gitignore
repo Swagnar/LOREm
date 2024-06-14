@@ -1,2 +1,5 @@
 TODO.md
 .htaccess
+node_modules/
+
+package-lock.json

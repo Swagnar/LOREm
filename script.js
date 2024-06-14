@@ -1,5 +1,8 @@
-import { createBootScreen, createNavbar, flattenTree } from "./scripts/utils.js";
+import { createBootScreen, createNavbar } from "./scripts/utils.js";
 import { createArrowControls, createSearchMenu, addEventListenersToSearchMenu } from "./scripts/controls.js";
+
+import { CTree, CFlatTree } from "./scripts/classes/Tree.class.js";
+
 import { DND_TREE } from "./scripts/DND.js";
 import { TWD_TREE } from "./scripts/TWD.js";
 
@@ -11,16 +14,27 @@ const ROOT = document.getElementById('root');
 var selectedView = "";
 
 /**
- * @type 
+ * @type {CTree}
  */
 var selectedTree;
 
+/**
+ * @type {CFlatTree}
+ */
 var flatTree;
 
 
-function clearRootElement() {
+async function clearRootElement() {
+  function animateBootScreen() {
+    return new Promise((resolve) => {
+      ROOT.classList.add('animate__animated', 'animate__zoomOut');
+      ROOT.addEventListener('animationend', resolve, { once: true });
+    });
+  }
+
+  await animateBootScreen();
   ROOT.innerHTML = '';
-  ROOT.classList.remove('fullwidth') ;
+  ROOT.classList.remove('fullwidth', 'animate__animated', 'animate__zoomOut');
 }
 
 /**
@@ -51,11 +65,11 @@ function renderMarkdown(e) {
       path = selectedView + "/" + e.target.dataset.path;
       documentName = e.target.innerHTML;
     }
-    
+
     
     // Guard clauses
-    if(!path) throw new Error("Selected nav link does not containt path dataset")
-    if(!documentName) throw new Error("Selected nav link does not have a text? How did you click it???")
+    if(!path) throw new Error("Selected nav link does not containt path dataset");
+    if(!documentName) throw new Error("Selected nav link does not have a text? How did you click it???");
     
 
     fetch(path)
@@ -63,6 +77,7 @@ function renderMarkdown(e) {
       .then(markdown => {
         
         // Parse the fetched file contents as markdown and inject it inside `#content` element
+        // eslint-disable-next-line no-undef
         document.getElementById('content').innerHTML = marked.parse(markdown);
         
         // Change the pages title
@@ -76,7 +91,7 @@ function renderMarkdown(e) {
         });
 
         // View has changed, new document rendered. Update attribiute indexes for controls and their event handelers
-        updateControlsIndexes(documentName)
+        updateControlsIndexes(documentName);
       })
       .catch(error => console.error('Error while rendering markdown:', error));
 
@@ -100,24 +115,24 @@ function updateControlsIndexes(currentDocumentName) {
   if(!selectedTree) throw new Error("No tree structure selected");
   if(!flatTree) throw new Error("No flatten verions of a tree structure");
   
-  let leftArrow = document.getElementById('left-arrow-control')
-  let rightArrow = document.getElementById('right-arrow-control')
+  let leftArrow = document.getElementById('left-arrow-control');
+  let rightArrow = document.getElementById('right-arrow-control');
 
-  let currentIndex = flatTree.findIndex(file => file.path.includes(currentDocumentName));
+  let currentIndex = flatTree.files.findIndex(file => file.relativePath.includes(currentDocumentName));
 
-  leftArrow.classList.remove('hidden')
-  rightArrow.classList.remove('hidden')
+  leftArrow.classList.remove('hidden');
+  rightArrow.classList.remove('hidden');
 
   switch (currentIndex) {
     case 0:
-      leftArrow.setAttribute('data-path', flatTree[flatTree.length-1].path);
+      leftArrow.setAttribute('data-path', flatTree.files[flatTree.files.length-1].relativePath);
       break;
     case flatTree.length-1:
-      rightArrow.setAttribute('data-path', flatTree[0].path);
+      rightArrow.setAttribute('data-path', flatTree.files[0].relativePath);
       break;
     default:
-      leftArrow.setAttribute('data-path', flatTree[currentIndex-1].path);
-      rightArrow.setAttribute('data-path', flatTree[currentIndex+1].path);
+      leftArrow.setAttribute('data-path', flatTree.files[currentIndex-1].relativePath);
+      rightArrow.setAttribute('data-path', flatTree.files[currentIndex+1].relativePath);
   }
 }
 
@@ -127,34 +142,38 @@ function updateControlsIndexes(currentDocumentName) {
  * This function clears the root element and creates a new navbar based on the selected tree.
  * It also creates and appends a content element and arrow controls to the root element, 
  * adding event listeners to the controls for navigation.
+ * 
+ * Additionaly, whenever the user changes its view, the search menu will also be changed.
+ * It's creaded anew and filled with `flatTree` representing the current directory layout for given view
  *
  * @throws {Error} Throws an error if the `selectedView` or `selectedTree` is not set.
  */
-function changeView(viewName) {
+async function changeView(viewName) {
 
   selectedView = viewName;
 
   switch(viewName) {
     case "DND":
-      selectedTree = DND_TREE;
+      selectedTree = new CTree(DND_TREE);
       break;
     case "TWD":
-      selectedTree = TWD_TREE;
+      selectedTree = new CTree(TWD_TREE);
       break;
     default:
       throw new Error("Unrecognized view, got: " + viewName);
   }
+
   if(!selectedTree) throw new TypeError("Selected tree is undefined, default case omitted");
 
-  flatTree = flattenTree(selectedTree);
+  flatTree = new CFlatTree(DND_TREE);
   
-  if(!flatTree || flatTree.length == 0) {
+  if(!flatTree || flatTree.files.length == 0) {
     throw new Error("Error after parsing selectedTree into flatTree, undefined or empty");
   }
 
-  clearRootElement();
+  await clearRootElement();
   
-  createNavbar(ROOT, renderMarkdown, selectedTree);
+  await createNavbar(ROOT, renderMarkdown, selectedTree);
 
   
   const contentElement = document.createElement('div');
