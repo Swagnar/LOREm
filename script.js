@@ -1,5 +1,5 @@
 import { createBootScreen, createNavbar } from "./scripts/utils.js";
-import { createArrowControls, createSearchMenu, addEventListenersToSearchMenu } from "./scripts/controls.js";
+import { createArrowControls, createSearchMenu } from "./scripts/controls.js";
 
 import { CTree, CFlatTree } from "./scripts/classes/Tree.class.js";
 
@@ -9,21 +9,25 @@ import { TWD_TREE } from "./scripts/TWD.js";
 const ROOT = document.getElementById('root');
 
 /**
- * @type {string}
+ * @type {string} - Holds the string representation of the selected view. 
+ *                  Only acceptable options are: `"TWD"` and `"DND"`
  */
 var selectedView = "";
 
 /**
- * @type {CTree}
+ * @type {CTree} - Holds the main tree structure of the selected view. 
  */
 var selectedTree;
 
 /**
- * @type {CFlatTree}
+ * @type {CFlatTree} - Holds the flattened version of the tree structure. 
  */
 var flatTree;
 
 
+/**
+ * Function clears the root element and plays the zoomOut animation when selecting the scenario
+ */
 async function clearRootElement() {
   function animateBootScreen() {
     return new Promise((resolve) => {
@@ -150,6 +154,16 @@ function updateControlsIndexes(currentDocumentName) {
  */
 async function changeView(viewName) {
 
+  function createContentElement() {
+    let contentElement = document.createElement('div');
+    contentElement.id = "content";
+    ROOT.append(contentElement); 
+  }
+
+  if(viewName !== "DND" && viewName !== "TWD") {
+    return;
+  }
+
   selectedView = viewName;
 
   switch(viewName) {
@@ -171,21 +185,22 @@ async function changeView(viewName) {
     throw new Error("Error after parsing selectedTree into flatTree, undefined or empty");
   }
 
+  // When all variables are set, create a new view and build all its components
+
+  // 1. Clear the root element
   await clearRootElement();
   
+  // 2. Create the navbar based on the `selectedTree`
   await createNavbar(ROOT, renderMarkdown, selectedTree);
-
   
-  const contentElement = document.createElement('div');
-  contentElement.id = "content";
-  ROOT.append(contentElement); 
+  // 3. Create an empty div with `#content` (it's going to be filled with data by `renderMarkdown` function)
+  createContentElement();
 
+  // 4. Create the arrow controlls
   createArrowControls(ROOT, renderMarkdown, flatTree);
 
-  const [searchInput, searchButton] = createSearchMenu(ROOT, flatTree);
-  addEventListenersToSearchMenu(searchInput, searchButton, flatTree, renderMarkdown);
-    
-
+  // 5. Create the search menu
+  createSearchMenu(ROOT, renderMarkdown, flatTree);
 }
 
 

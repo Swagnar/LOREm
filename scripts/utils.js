@@ -23,29 +23,6 @@ export function applyParallax(event, element) {
   });
 }
 /**
- * Flattens a tree structure into a list of file objects.
- * 
- * This function takes a hierarchical tree structure representing directories and their files,
- * and flattens it into a simple list of file objects with their names and relative paths.
- *
- * @param {Object[]} tree - An array of directory objects representing the tree structure. 
- *                          Each directory object should have a `name` (string) and a `files` 
- *                          (array) property. Each file object in the `files` array should 
- *                          have a `name` (string) and `relativePath` (string) property.
- * @returns {Object[]} - Returns an array of file objects, each containing a `name` and `path` property.
- */
-export function flattenTree(tree) {
-  let flatList = [];
-
-  tree.forEach(folder => {
-      folder.files.forEach(file => {
-          flatList.push({ name: file.name, path: file.relativePath });
-      });
-  });
-
-  return flatList;
-}
-/**
  * Creates a boot screen with two sections: one for DND and one for TWD.
  * 
  * This function appends a new boot screen to the provided root element. 
@@ -54,8 +31,7 @@ export function flattenTree(tree) {
  *
  * @param {HTMLDivElement} rootElement - The root element to which the boot screen will be appended. 
  *                                       It should be a div element.
- * @returns {[HTMLDivElement, HTMLDivElement, HTMLImageElement, HTMLImageElement]} - Returns an array 
- *                                       containing the DND wrapper, TWD wrapper, DND logo, and TWD logo.
+ * @param {Function} viewFn - A fucntion that will be passed to `addEventListenersToBootScreen`. Here it's `changeView()`
  */
 export function createBootScreen(rootElement, viewFn) {
   console.log('Creating Boot Screen...');
@@ -112,6 +88,7 @@ export function createBootScreen(rootElement, viewFn) {
  * @param {HTMLElement} wrapperTWD - The HTML element representing the TWD wrapper.
  * @param {HTMLImageElement} logoDND - The HTML image element representing the DND logo.
  * @param {HTMLImageElement} logoTWD - The HTML image element representing the TWD logo.
+ * @param {Function} viewFn - A function that handles rendering a main screen for given scenario. Here it's `changeView()`
  */
 function addEventListenersToBootScreen(wrapperDND, wrapperTWD, logoDND, logoTWD, viewFn) {
   console.log('Adding event listeners to Boot Screen...');
@@ -131,6 +108,12 @@ function addEventListenersToBootScreen(wrapperDND, wrapperTWD, logoDND, logoTWD,
   logoDND.addEventListener('click', function() {
     viewFn('DND');
   });
+  logoDND.addEventListener('mouseenter', function() {
+    // TODO: Fix animations, position: smth?
+
+    // logoDND.classList.remove('animate__fadeIn');
+    // logoDND.classList.add('animate__flip');
+  })
   
   logoTWD.addEventListener('click', function() {
     viewFn('TWD');
@@ -187,11 +170,6 @@ export async function createNavbar(rootElement, clickHandeler, sourceTree) {
       navDropdownContentWrapper.classList.add('dropdown-content');
       
       dir.files.forEach(file => {
-
-        // TODO
-        //
-        // If there is a directory inside `dir`, display it as a opt group or smth like that
-        //
         
         let navDropdownContentElement = document.createElement('span');
         navDropdownContentElement.innerText = file.name;

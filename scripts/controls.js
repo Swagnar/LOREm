@@ -2,7 +2,7 @@
  * Creates relatively positioned arrow controls 
  * @param {HTMLDivElement} rootElement 
  */
-export function createArrowControls(rootElement, renderFn, flatTree) {
+export function createArrowControls(rootElement, flatTree, renderFn) {
 
   let leftArrow = document.createElement('span');
   let rightArrow = document.createElement('span');
@@ -21,41 +21,6 @@ export function createArrowControls(rootElement, renderFn, flatTree) {
   rootElement.prepend(rightArrow);
   rootElement.prepend(leftArrow);
   addEventListenersToControls(leftArrow, rightArrow, renderFn, flatTree);
-  return [leftArrow, rightArrow];
-}
-
-export function createSearchMenu(rootElement, flatTree) {
-  if(!flatTree) {
-    throw new TypeError('Cannot create datalist element, flatTree is undefined');
-  }
-  let searchWrapper = document.createElement('search');
-
-  let searchInput = document.createElement('input');
-  let searchButton = document.createElement('button');
-  let searchDataList = document.createElement('datalist');
-
-  searchDataList.id = "search-datalist";
-  searchInput.setAttribute('list', 'search-datalist');
-  searchInput.placeholder = "Wpisz nazwę pliku...";
-  searchInput.id = "search-input";
-
-  searchButton.innerText = "Szukaj";
-
-  flatTree.files.forEach(file => {
-    let option = document.createElement('option');
-    option.value = file.name;
-    option.dataset.path = file.relativePath;
-
-    searchDataList.append(option);
-  });
-
-  searchWrapper.append(searchInput, searchButton, searchDataList);
-
-  rootElement.append(searchWrapper);
-
-  searchWrapper.classList.add('animate__animated', 'animate__fadeIn');
-
-  return [searchInput, searchButton];
 }
 /**
  * Adds event listeners to the navigation controls and document for handling markdown rendering.
@@ -122,7 +87,40 @@ function addEventListenersToControls(leftArrow, rightArrow, renderFn, flatTree) 
     console.error(er);
   } 
 }
+export function createSearchMenu(rootElement, flatTree, renderFn) {
+  if(!flatTree) {
+    throw new TypeError('Cannot create datalist element, flatTree is undefined');
+  }
+  let searchWrapper = document.createElement('search');
 
+  let searchInput = document.createElement('input');
+  let searchButton = document.createElement('button');
+  let searchDataList = document.createElement('datalist');
+
+  searchDataList.id = "search-datalist";
+  searchInput.setAttribute('list', 'search-datalist');
+  searchInput.placeholder = "Wpisz nazwę pliku...";
+  searchInput.id = "search-input";
+
+  searchButton.innerText = "Szukaj";
+
+  flatTree.files.forEach(file => {
+    let option = document.createElement('option');
+    option.value = file.name;
+    option.dataset.path = file.relativePath;
+
+    searchDataList.append(option);
+  });
+
+  searchWrapper.append(searchInput, searchButton, searchDataList);
+
+  rootElement.append(searchWrapper);
+
+  searchWrapper.classList.add('animate__animated', 'animate__fadeIn');
+
+  addEventListenersToSearchMenu(searchInput, searchButton, flatTree, renderFn)
+  // return [searchInput, searchButton];
+}
 /**
  * Adds event listeners to the search menu input and submit elements.
  * 
@@ -134,7 +132,7 @@ function addEventListenersToControls(leftArrow, rightArrow, renderFn, flatTree) 
  * @param {Array} flatTree - The array representing the structure of the markdown content.
  * @param {Function} renderFn - The function to render the markdown content based on the search result.
  */
-export function addEventListenersToSearchMenu(inputElement, submitElement, flatTree, renderFn) {
+function addEventListenersToSearchMenu(inputElement, submitElement, flatTree, renderFn) {
   /**
    * Event listener for the 'keydown' event on the input element.
    * Triggers the click event on the submit element when the 'Enter' key is pressed.
@@ -159,6 +157,9 @@ export function addEventListenersToSearchMenu(inputElement, submitElement, flatT
     console.log(file);
   });
 }
+
+
+
 /**
  * 
  * @param {string} documentName Name of the file that's to be fetched
@@ -183,14 +184,13 @@ function simulateClickEvent(documentName, flatTree) {
   });
   return event;
 }
-
 /**
  * 
  * @param {HTMLSpanElement} leftArrow 
  * @param {Object[]} flatTree 
  * @returns {CustomEvent}
  */
-export function moveBack(leftArrow, flatTree) {
+function moveBack(leftArrow, flatTree) {
   if(!leftArrow || !flatTree) throw new TypeError(`Expected HTMLSpan and Object[], got ${typeof leftArrow} and ${typeof flatTree}:`);
   
   const target = leftArrow.getAttribute('data-path');
@@ -208,7 +208,7 @@ export function moveBack(leftArrow, flatTree) {
  * @param {Object[]} flatTree 
  * @returns {CustomEvent}
  */
-export function moveForward(rightArrow, flatTree) {
+function moveForward(rightArrow, flatTree) {
   if(!rightArrow || !flatTree) throw new TypeError(`Expected HTMLSpan and CFlatTree, got ${typeof rightArrow} and ${typeof flatTree}:`);
   
   const target = rightArrow.getAttribute('data-path');
