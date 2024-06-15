@@ -17,8 +17,8 @@
   </thead>
   <tbody>
     <tr>
-      <td>1</td>
-      <td>2</td>
+      <td style="text-align: center;">[ 1 ]</td>
+      <td style="text-align: center;">[ 2 ]</td>
       <td>
         <u>2-4 tygodnie</u>
       </td>

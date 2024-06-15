@@ -122,7 +122,7 @@ export function createSearchMenu(rootElement, flatTree, renderFn) {
 
   searchWrapper.append(searchInput, searchButton, searchDataList);
 
-  rootElement.append(searchWrapper);
+  rootElement.before(searchWrapper);
 
   searchWrapper.classList.add('animate__animated', 'animate__fadeIn');
 

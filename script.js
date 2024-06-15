@@ -196,7 +196,12 @@ async function changeView(viewName) {
   createArrowControls(ROOT, flatTree, renderMarkdown);
 
   // 5. Create the search menu
-  createSearchMenu(ROOT, flatTree, renderMarkdown);
+  // createSearchMenu(ROOT, flatTree, renderMarkdown);
+  createSearchMenu(
+    document.getElementById('content'),
+    flatTree,
+    renderMarkdown
+  )
 }
 
 // ##############################P###################################################################################################################

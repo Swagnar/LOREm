@@ -122,7 +122,7 @@ search > button {
 
 #content {
   background-color: #eee;
-  padding: 0 16px;
+  padding: 0 1rem 1rem 1rem;
 
   font-family: "Cinzel", serif;
   font-optical-sizing: auto;
@@ -135,6 +135,9 @@ search > button {
   padding-top: 2rem;
 }
 
+#content:empty {
+  display: none;
+}
 #content > p:has(img) {
   display: flex;
   justify-content: center;
