@@ -33,7 +33,7 @@ export class CFlatTree {
   }
 
   buildFlatTree(tree) {
-    tree.forEach(directory => {
+    tree.directories.forEach(directory => {
       directory.files.forEach(file => {
         this.files.push(new CFile(file.name, file.relativePath));
       });

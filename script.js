@@ -175,7 +175,7 @@ async function changeView(viewName) {
 
   if(!selectedTree) throw new TypeError("Selected tree is undefined, default case omitted");
 
-  flatTree = new CFlatTree(DND_TREE);
+  flatTree = new CFlatTree(selectedTree);
   
   if(!flatTree || flatTree.files.length == 0) {
     throw new Error("Error after parsing selectedTree into flatTree, undefined or empty");
@@ -199,7 +199,7 @@ async function changeView(viewName) {
   createSearchMenu(ROOT, flatTree, renderMarkdown);
 }
 
-// #################################################################################################################################################
+// ##############################P###################################################################################################################
 
 window.onload = () => {
   createBootScreen(ROOT, changeView);

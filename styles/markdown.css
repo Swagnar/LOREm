@@ -21,3 +21,13 @@ a:hover {
 h1 {
   text-align: center;
 }
+td,th {
+  border-bottom: 1px solid #303030;
+}
+table {
+  border-collapse: collapse
+}
+td u {
+  display: block;
+  text-align: center;
+}
