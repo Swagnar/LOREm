@@ -43,17 +43,43 @@ Podejrzanie wyglądający grabarz, zasugerował przejazd. Kaznodzieja i znachor 
 
 ze znachorem udali sie do ciężarówki lecz zostali otoczeni. początkowo odpychali, lecz potem zaczęli uciekać, chuk został ciężko ranny. andrew nie dał rady go dostatecznie wyleczyć, należało go przetransportować do weterynarza. 
 
-
-
 ## Sesja 3
 
-Timeskip:
+23.09.2020, środa
 
-minął tydzień dopóki zaczęliśmy robić coś naprawdę ważnego
+> Minął tydzień dopóki zaczęliśmy robić coś naprawdę ważnego, do tego czasu badaliśmy nasz bunkier i jego okolice
 
-zająłem się budową ogródka zielarskiego, musimy mieć z czego tworzyć leki. Hank zajmuje się głównie polowaniem, będę mu czasem z tym pomagać, muszę nauczyć się lepiej strzelać
+> <a data-path="Grupa/Andrew.md">Andrew</a> zajął się budową ogródka zielarskiego, musimy mieć z czego tworzyć leki. <a data-path="Grupa/Hank.md">Hank</a> zajmuje się głównie polowaniem, będę mu czasem z tym pomagać, muszę nauczyć się lepiej strzelać.
 
 stworzenie łuku oraz strzał
 
 
 znalezione zioła: mięta, babka
+
+johny pojechał z sarą po paliwo, spotkał tam kuzyna
+
+spotkałem marka chodząc po lesie z grahamem
+
+
+podczas wyjazdu (pojechali też z beth) nie udało im sie przekonać pań z kliniki wterynaryjnej aby przybyły do naszego bunkra
+
+
+## Sesja 4
+
+Żona Andrew od paru dni nie daje żadnego znaku życia. Nasza spiżarnia zaczyna świecić coraz większymi pustkami. 
+
+Z rana grupa zastanawiała się co pocznie tego dnia. Wszedł nawet temat odejścia z bunkra, aby znaleźć jakieś lepsze miejsce. Graham spacerował z Beth. Natrafili na pół martwego walkera którego Graham dobił
+
+żona zadzwowniła, nie wchodź głównymi drzwiami, podstawowa, oby nas było mało.
+
+Andrew, Graham, Johny i Chuk pojechali do Afton ratować Karen.
+
+No drodze jeszcze będąc wewnątrz lasu, jadąc drugą drogą do Afton napotkaliśmy przewróconą ciężarówkę otoczoną ciałami zombiaków. Kabina kierowcy znajdowała się za skarpą i nie było warto do niej wchodzić. W jej tyle znaleźliśmy malunek wyglądający jak meksykańska czaszka.
+
+Ominęliśmy Juno, widząc je na horyzoncie. Przejeżdżając obok wieży ciśnień która wyglądała jak po eksplozji, mijaliśmy kolejne stacje benzynowe aż natrafiliśmy na znak witający w Afton.
+
+Z daleka widzieliśmy wysoki piętrowy budynek otoczony kilkumetrowym płotem z metalowej siatki, w niektórych miejscach dołączony był drut kolczasty.
+
+Johny po wejściu do budynku przez boczne wejście zauważył ciało siedzące na krześle. Po oddaniu ostrzegawczego strzału w głowę, spróbował otworzyć szlaban lecz ten był zepsuty. Wziął on natomiast ze sobą leki przeciwbólowe oraz klucze. 
+
+Rzucono w nas granatem. zabiliśmy atakującego. to był jakiś młody szczyl. 

@@ -15,10 +15,10 @@ export const TWD_TREE = [
   {
     name: "Lokacje",
     files: [
+      { name: "Szkoła podstawowa w Afton", relativePath: "Lokacje/Afton/Szkoła podstawowa w Afton.md" },
       { name: "Bunkier Hanka", relativePath: "Lokacje/Chattahoochee-Ononee National Forests/Bunkier Hanka.md" },
       { name: "Leśniczówka", relativePath: "Lokacje/Chattahoochee-Ononee National Forests/Leśniczówka.md" },
       { name: "Stacja Benzynowa przy Suches", relativePath: "Lokacje/Suches/Stacja Benzynowa przy Suches.md" },
-      { name: "Szkoła w Suches", relativePath: "Lokacje/Suches/Szkoła w Suches.md" },
     ]
   },
   {
@@ -37,6 +37,7 @@ export const TWD_TREE = [
   {
     name: "Rejony",
     files: [
+      { name: "Afton", relativePath: "Rejony/Afton.md" },
       { name: "Chattahoochee-Ononee National Forests", relativePath: "Rejony/Chattahoochee-Ononee National Forests.md" },
       { name: "Suches", relativePath: "Rejony/Suches.md" }
     ]

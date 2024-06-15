@@ -1,4 +1,3 @@
-<!-- TODO: Obrazek -->
 <p><img src="media/cpn_przy_suches.jpg"></img><p>
 
 # Stacja Beznzynowa przy Suches

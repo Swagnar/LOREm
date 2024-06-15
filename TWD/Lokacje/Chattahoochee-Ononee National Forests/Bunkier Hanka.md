@@ -41,13 +41,13 @@
 - Magazyn
 - Polowanie (<a data-path="Grupa/Hank.md">Hank</a>)
 
-### Źródła leków:<
+### Źródła leków:
 
 - <del><a href="#projects-herbs">Ogród z ziołami</a></del> (WIP)
 
 ### Przedmioty na stanie:
 
-<table>
+<table class="big">
   <thead>
     <tr>
       <th>Broń palna</th>
@@ -130,7 +130,7 @@
   </thead>
   <tbody>
     <tr>
-      <td>6 tygodni</td>
+      <td>6 dni</td>
       <td>łuk i strzały</td>
       <td>1 (utrzymanie 0) - <a data-path="Grupa/Chuk.md">Chuk</a></td>
       <td>nóż, racja, żywnościowa</td>

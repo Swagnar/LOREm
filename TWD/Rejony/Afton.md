@@ -1,6 +1,6 @@
-<p><img src="media/suches.jpg"></img></p>
+<p><img src="media/afton.jpg"></img></p>
 
-# Suches
+# Afton
 
 > lorem ipsum sit dolor amet
 

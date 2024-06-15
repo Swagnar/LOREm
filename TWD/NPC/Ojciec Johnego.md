@@ -1,2 +1,9 @@
-![[Interrogation_mark_with_material_shadows 1.jpg]]
-- Chyba pracuje w jakimś laboratorium 
+<p><img src="media/unknown.jpg"></img></p>
+
+# Ojciec Johnego
+
+> Wojskowy, chyba pracownik jakiegoś laboratorium. 
+
+---
+
+- Johny mówił że ojciec dzwonił do niego w dniu apokalipsy. Mówił że rozmowa była dziwna 
