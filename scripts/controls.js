@@ -1,6 +1,8 @@
 /**
  * Creates relatively positioned arrow controls 
  * @param {HTMLDivElement} rootElement 
+ * @param {CFlatTree} flatTree
+ * @param {Function} renderFn
  */
 export function createArrowControls(rootElement, flatTree, renderFn) {
 
@@ -87,6 +89,12 @@ function addEventListenersToControls(leftArrow, rightArrow, renderFn, flatTree) 
     console.error(er);
   } 
 }
+/**
+ * 
+ * @param {HTMLDivElement} rootElement 
+ * @param {CFlatTree} flatTree 
+ * @param {Function} renderFn 
+ */
 export function createSearchMenu(rootElement, flatTree, renderFn) {
   if(!flatTree) {
     throw new TypeError('Cannot create datalist element, flatTree is undefined');
@@ -119,7 +127,6 @@ export function createSearchMenu(rootElement, flatTree, renderFn) {
   searchWrapper.classList.add('animate__animated', 'animate__fadeIn');
 
   addEventListenersToSearchMenu(searchInput, searchButton, flatTree, renderFn)
-  // return [searchInput, searchButton];
 }
 /**
  * Adds event listeners to the search menu input and submit elements.

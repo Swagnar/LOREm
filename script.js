@@ -118,28 +118,24 @@ function renderMarkdown(e) {
 function updateControlsIndexes(currentDocumentName) {
   if(!selectedTree) throw new Error("No tree structure selected");
   if(!flatTree) throw new Error("No flatten verions of a tree structure");
+  if(!flatTree.files) throw new Error("No files found in the flat tree");
   
   let leftArrow = document.getElementById('left-arrow-control');
   let rightArrow = document.getElementById('right-arrow-control');
 
   let currentIndex = flatTree.files.findIndex(file => file.relativePath.includes(currentDocumentName));
+  if(currentIndex === -1) throw new Error(`Document "${currentDocumentName}" not found in the flat tree`);
 
   leftArrow.classList.remove('hidden');
   rightArrow.classList.remove('hidden');
 
-  switch (currentIndex) {
-    case 0:
-      leftArrow.setAttribute('data-path', flatTree.files[flatTree.files.length-1].relativePath);
-      break;
-    case flatTree.length-1:
-      rightArrow.setAttribute('data-path', flatTree.files[0].relativePath);
-      break;
-    default:
-      leftArrow.setAttribute('data-path', flatTree.files[currentIndex-1].relativePath);
-      rightArrow.setAttribute('data-path', flatTree.files[currentIndex+1].relativePath);
-  }
-}
+  let n = flatTree.files.length;
+  let prevIndex = (currentIndex - 1 + n) % n;
+  let nextIndex = (currentIndex + 1) % n;
 
+  leftArrow.setAttribute('data-path', flatTree.files[prevIndex].relativePath)
+  rightArrow.setAttribute('data-path', flatTree.files[nextIndex].relativePath)
+}
 /**
  * Changes the view based on the selected view and tree, and updates the UI accordingly.
  * 
@@ -149,7 +145,7 @@ function updateControlsIndexes(currentDocumentName) {
  * 
  * Additionaly, whenever the user changes its view, the search menu will also be changed.
  * It's creaded anew and filled with `flatTree` representing the current directory layout for given view
- *
+ * // TODO: Add more throws
  * @throws {Error} Throws an error if the `selectedView` or `selectedTree` is not set.
  */
 async function changeView(viewName) {
@@ -197,12 +193,11 @@ async function changeView(viewName) {
   createContentElement();
 
   // 4. Create the arrow controlls
-  createArrowControls(ROOT, renderMarkdown, flatTree);
+  createArrowControls(ROOT, flatTree, renderMarkdown);
 
   // 5. Create the search menu
-  createSearchMenu(ROOT, renderMarkdown, flatTree);
+  createSearchMenu(ROOT, flatTree, renderMarkdown);
 }
-
 
 // #################################################################################################################################################
 
