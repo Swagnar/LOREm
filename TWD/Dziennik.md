@@ -83,3 +83,23 @@ Z daleka widzieliśmy wysoki piętrowy budynek otoczony kilkumetrowym płotem z 
 Johny po wejściu do budynku przez boczne wejście zauważył ciało siedzące na krześle. Po oddaniu ostrzegawczego strzału w głowę, spróbował otworzyć szlaban lecz ten był zepsuty. Wziął on natomiast ze sobą leki przeciwbólowe oraz klucze. 
 
 Rzucono w nas granatem. zabiliśmy atakującego. to był jakiś młody szczyl. 
+
+
+
+## Sesja 5
+
+Budze się dźwiękiem Chuka przeszukującego różne skrzynie i pakunki.
+
+Drzwi zamalowane są grafiti, które zakrywa tabliczkę oraz kartkę. Po rozczytaniu można ujrzeć charakterystyczny krój pisma, zakończony podpisem Dr. Falco.
+
+Po otwarciu widzimy duże pomieszczenie z wiszącymi ciałami, zawiniętymi w worki. Widać im tylko twarze. Ruszały się. Miały dziwną wysypkę.
+
+Weszliśmy po schodach w górę. Natrafiliśmy na długi korytarz usłany drzwiami. Wzdłuż korytarza naliczyliśmy 6-7 ciał.
+
+Wojsko chciało zarazić zombie za pomocą wirusa. zrobili oni też szczepionke. ludzie mieli byc odporni a martwi umierać na zapalenie opon mózgowych
+
+2msc odpoczywania po kulce w kręgosłup
+
+## Sesja 6
+
+Walka przy blokadzie stworzonej przez członków gangu. Graham zajebał pierwszego pięknym strzałem w szyję. 

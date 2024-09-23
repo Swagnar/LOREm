@@ -9,7 +9,7 @@
 
 ---
 
-
+Karta więzianna przypadku opisanego jako "Wadu": Wadu niegdyś był bardzo potężnym czarnoksiężnikiem. Pracował w stolicy. Jego najweiększą ambicją było to aby posiadać własne zaklęcie. Dobił targu z potężnym demonem który zapisał to zaklęcie w strunach świata jako "Wadu Hek", ceną było to iż Wadu nie mógł do końca swojego życia nie mógł mówić nic innego niż werbale swojego zaklęcia.
 
   
 

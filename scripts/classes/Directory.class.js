@@ -18,7 +18,7 @@ export class CDirectory {
     }
   }
 
-  addFiles(files) {
+  addFiles(...files) {
     files.forEach(file => this.addFile(file));
   }
 }

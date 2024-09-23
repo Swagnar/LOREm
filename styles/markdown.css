@@ -5,10 +5,15 @@ blockquote {
   border-left: 5px solid peru;
   font-style: italic;
 }
-blockquote::first-letter {
+blockquote::first-letter,
+blockquote p::first-letter {
   color: peru;
   font-weight: bold;
   font-size: 130%;
+}
+input[type=checkbox]:disabled {
+  filter: grayscale(0%) brightness(90%) sepia(100%) sepia(100%);
+  pointer-events: none;
 }
 a {
   text-decoration: none;
