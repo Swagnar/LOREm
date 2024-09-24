@@ -27,11 +27,20 @@ a:hover {
 h1 {
   text-align: center;
 }
-td,th {
+h1 + p {
+  text-align: center;
+  color: #666;
+} 
+tr:not(:last-of-type) {
   border-bottom: 1px solid #303030;
 }
 table {
-  border-collapse: collapse
+  border-collapse: collapse;
+  margin: 0 auto;
+  width: 80%;
+}
+hr {
+  margin: 2rem 0;
 }
 td u {
   display: block;
@@ -39,6 +48,11 @@ td u {
 }
 li {
   padding: .25rem .75rem;
+}
+ol > li::marker {
+  color: peru;
+  font-weight: bold;
+  font-size: 150%;
 }
 table.big li:not(:only-child):nth-of-type(even) {
   background-color: #eee;

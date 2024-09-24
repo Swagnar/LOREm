@@ -53,3 +53,28 @@
 .boot-screen-part.gray-out {
   filter: grayscale(100%);
 }
+
+
+
+@media (max-width: 600px) {
+  .boot-screen-wrapper {
+    grid-template-columns: 1fr; /* Change to single column */
+    grid-template-rows: repeat(2, auto); /* Stack items vertically */
+  }
+
+  /* Adjust the left and right side for vertical stacking */
+  .left-side, .right-side {
+    float: none; /* Stop floating things, you don't need this */
+    width: 100%; /* Make both sides take full width */
+  }
+
+  .left-side .boot-screen-logo, 
+  .right-side .boot-screen-logo {
+    left: 50%; /* Align center */
+    transform: translate(-50%, -50%); /* Center vertically and horizontally */
+  }
+
+  .boot-screen-logo {
+    width: 200px; /* Resize the logo for smaller screens */
+  }
+}

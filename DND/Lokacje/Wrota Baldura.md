@@ -6,4 +6,7 @@
 
 > Największe miasto Faerûn. Miejsce spotkań Rady Czterech oraz główna siedziba łówców artefaktów - Złotej Kompanii
 
-- w północnych kanałach zalęgły się krokodyle - już martwe
+<h3>Zadania:</h3>
+<ul>
+- <a data-path="Questy/Przeżyć trening.md">Przeżyć trening</a>
+</ul>

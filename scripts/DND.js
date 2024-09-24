@@ -4,6 +4,7 @@ export const DND_TREE = [
       files: [
           { name: "Avir Heramov", relativePath: "Bohaterowie/Avir Heramov.md" },
           { name: "Kra'tan", relativePath: "Bohaterowie/Kra'tan.md" },
+          { name: "Brogir", relativePath: "Bohaterowie/Brogir.md" },
           { name: "Nemo Quickspell", relativePath: "Bohaterowie/Nemo Quickspell.md" },
           { name: "Trygve Birger", relativePath: "Bohaterowie/Trygve Birger.md" },
       ]
@@ -22,6 +23,7 @@ export const DND_TREE = [
           { name: "Nyx", relativePath: "NPC/Nyx.md" },
           { name: "Erebos", relativePath: "NPC/Erebos.md" },
           { name: "Morwen", relativePath: "NPC/Morwen.md" },
+          { name: "Entar Silvershield", relativePath: "NPC/Entar Silvershield.md" },
       ]
   },
   {
@@ -45,7 +47,7 @@ export const DND_TREE = [
   {
     name: "Ekstra",
     files: [
-        { name: "Kompanie Łowców", relativePath: "Kompanie.md" },
+        { name: "Gildie", relativePath: "Gildie.md" },
         { name: "Kodeks", relativePath: "Kodeks.md" },
     ]
   }

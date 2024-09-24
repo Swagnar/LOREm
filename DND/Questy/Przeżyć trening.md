@@ -19,7 +19,7 @@ Kapitan <a data-path="NPC/Kapitan Hakon.md">Hakon</a> zlecił nam ochronę ważn
 
 - [X] Chronić gości
 
-> Na wielkich statkach do portu dobili przedstawiciele odległych krajów byli to Eldrin, Nyx, Erebos i Morwen. Podczas przemowy Morwena z tłumu zaczęły wybiegać postacie szarżujące na gości. Kra'tan po rzuceniu się na jedną z nich zapłonął, to była pułapka. Nemo (nie)stety zabił uciekającego zamachowca.
+> Na wielkich statkach do portu dobili przedstawiciele odległych krajów - byli to <a data-path="NPC/Eldrin.md">Eldrin</a>, <a data-path="NPC/Nyx.md">Nyx</a>, <a data-path="NPC/Erebos.md">Erebos</a> i <a data-path="NPC/Morwen.md">Morwen</a>. Podczas przemowy Morwena z tłumu zaczęły wybiegać postacie szarżujące na gości. Kra'tan po rzuceniu się na jedną z nich zapłonął, to była pułapka. Nemo (nie)stety zabił uciekającego zamachowca.
 
 Za karę, kapitan <a data-path="NPC/Kapitan Hakon.md">Hakon</a> nakazał nam sprzątanie północnego oddcinka kanalizacji miasta. Cywile skarżyli się na nadmierny smród, inny niż zwykle. 
 
